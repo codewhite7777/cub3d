@@ -1,0 +1,19 @@
+
+ SO     textures/tex_1/south.xpm
+    NO	    textures/tex_1/north.xpm
+ EA	textures/tex_1/east.xpm
+WE	    textures/tex_1/west.xpm
+
+        	S    	          textures/tex_1/sprite3.xpm
+	F	0 ,0	,          0
+			C 255,255,255
+
+	1111111
+1222100
+1222100
+1222100
+1222100
+1121100
+11E1111
+1010221
+1111111
