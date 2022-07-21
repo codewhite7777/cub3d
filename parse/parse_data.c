@@ -18,13 +18,23 @@
 int	parse_data(t_cub3d *p_data)
 {
 	int	idx;
+	int parse_cnt;
+	t_parse parse_type;
 
+	parse_cnt = 0;
 	idx = 0;
-	while (idx < p_data->map_line)
+	while (idx < p_data->map_line && parse_cnt < 6)
 	{
-		p_data->parse_flag |= parse_line(p_data->map_ptr[idx], p_data);
+		parse_type = parse_line(p_data->map_ptr[idx], p_data);
+		// 중복방지와 map_content 시작 인덱스를 찾기위해 추가
+		if (parse_type == PARSE_ERROR)
+			ft_exit("Error\nInvalid parse symbol", 1);
+		if (parse_type != PARSE_NONE)
+			parse_cnt++;
+		p_data->parse_flag |= parse_type;
 		idx++;
 	}
+	p_data->content_data.content_idx = idx;
 	if (p_data->parse_flag != PARSE_FINISH)
 	{
 		ft_map_free(p_data, p_data->map_line);
@@ -48,6 +58,8 @@ t_parse	parse_line(char *line, t_cub3d *p_data)
 		return (parse_rgb(line, "F", PARSE_FLOOR, p_data));
 	else if (ft_strnstr(line, "C", ft_strlen(line)))
 		return (parse_rgb(line, "C", PARSE_CEIL, p_data));
+	if (ft_strlen(line)) // if (!line_isspace(line))
+		return (PARSE_ERROR);
 	return (PARSE_NONE);
 }
 

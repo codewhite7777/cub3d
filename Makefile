@@ -28,9 +28,9 @@ LIBFT_FILE = ft_isalnum ft_isprint ft_memcmp ft_putchar_fd ft_split \
 
 GNL_FILE = get_next_line
 
-UTILS_FILE = ft_utils_01
+UTILS_FILE = ft_utils_01 debug
 
-PARSE_FILE = file_loader parse_data
+PARSE_FILE = file_loader parse_data content_checker
 
 LIBFT_SRC = $(addprefix libft/,$(addsuffix .c, $(LIBFT_FILE)))
 GNL_SRC = $(addprefix get_next_line/,$(addsuffix .c, $(GNL_FILE)))

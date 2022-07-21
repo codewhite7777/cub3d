@@ -14,6 +14,7 @@
 #include "utils/ft_utils_01.h"
 #include "parse/file_loader.h"
 #include "parse/parse_data.h"
+#include "parse/content_checker.h"
 
 
 //debug
@@ -35,5 +36,14 @@ void	init_data(int argc, char* argv[], t_cub3d *p_data)
 	printf("c : [0x%06x] \n", p_data->parse_data.c_color);
 	printf("f : [0x%06x] \n", p_data->parse_data.f_color);
 
+	printf("map(%d) : [%p] \n", p_data->map_line, p_data->map_ptr);
+	content_checker(p_data);
+
+	printf("content_idx: %d, content_len: %d, content_line: %d\n", p_data->content_data.content_idx, p_data->content_data.content_len, p_data->content_data.content_line);
+
+	printf("content(%d) : [%p] \n", p_data->content_data.content_line, p_data->content_data.content_ptr);
+	for(int i = 0; i < p_data->content_data.content_line; i++) {
+		printf("%d: %s\n", i, p_data->map_ptr[i + p_data->content_data.content_idx]);
+	}
 	return ;
 }

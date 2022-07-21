@@ -30,6 +30,7 @@ typedef enum e_asset
 typedef enum e_parse
 {
 	PARSE_MIN_LINE = 6,
+	PARSE_ERROR = -1,
 	PARSE_NONE = 0,
 	PARSE_NORTH = 1,
 	PARSE_SOUTH = 2,
@@ -53,6 +54,15 @@ typedef struct s_parse_data
 	int		f_color;
 }				t_parse_data;
 
+typedef struct s_content_data
+{
+	char	**content_ptr;
+	int		content_idx;
+	int		content_len;
+	int		content_line;
+	int		player_cnt;
+}				t_content_data;
+
 typedef struct	s_cub3d
 {
 	t_mlx			mlx;
@@ -60,6 +70,7 @@ typedef struct	s_cub3d
 	unsigned char	parse_flag;
 	int				map_line;
 	char			**map_ptr;
+	t_content_data	content_data;
 }				t_cub3d;
 
 void	init_data(int argc, char* argv[], t_cub3d *p_data);

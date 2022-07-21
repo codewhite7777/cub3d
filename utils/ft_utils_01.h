@@ -19,4 +19,8 @@ void	ft_map_free(t_cub3d *p_data, int idx);
 int		split_count(char ***buf);
 void	split_free(char **buf);
 
+int		ft_isin_line(const char *line, const char *del);
+int		ft_isin(char c, const char *del);
+void	ft_dptr_free(char **dptr, int len);
+
 #endif
