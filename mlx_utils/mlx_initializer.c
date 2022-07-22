@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:31:18 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 16:08:58 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/22 18:43:50 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "mlx_initializer.h"
 #include <stdlib.h>
 #include "event_hook.h"
+#include "xpm_loader.h"
 
 void	mlx_start(t_cub3d *p_data)
 {
@@ -23,6 +24,7 @@ void	mlx_start(t_cub3d *p_data)
 	p_data->mlx.img_ptr = mlx_new_image(p_data->mlx.mlx, WIN_WIDTH, WIN_HEIGHT);	//이미지 버퍼 생성
 	mlx_hook(p_data->mlx.mlx_win, event_key_press, 0, key_event, (void *)p_data); //후킹 이벤트(키) 등록
 	mlx_hook(p_data->mlx.mlx_win, event_window_destroy, 0, exit_event, (void *)p_data); //후킹 이벤트(종료) 등록
+	xpm_load(p_data);
 	return ;
 }
 

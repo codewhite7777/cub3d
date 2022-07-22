@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:05:53 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/22 17:46:24 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "cub3d.h"
 #include <mlx.h>
 
+//debug
+#include<stdio.h>
+
 int	main(int argc, char *argv[])
 {
 	t_cub3d	data;
@@ -22,6 +25,6 @@ int	main(int argc, char *argv[])
 	ft_bzero(&data, sizeof(data));
 	init_data(argc, argv, &data);
 	mlx_loop(data.mlx.mlx);
-	system("leaks cub3D");
+	// system("leaks cub3D");
 	return (0);
 }

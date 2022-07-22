@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:51:30 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:03:54 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/22 17:07:03 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ typedef enum	e_key_event
 }				t_key_event;
 
 int	key_event(int keycode, t_cub3d *p_data);
-int	exit_event(int keycode, t_cub3d *p_data);
+int	exit_event(t_cub3d *p_data);
 
 #endif

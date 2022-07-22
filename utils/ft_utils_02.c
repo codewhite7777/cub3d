@@ -6,12 +6,15 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:13:00 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:13:29 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/22 18:53:11 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_utils_02.h"
 #include <stdlib.h>
+
+//debug
+#include <stdio.h>
 
 int	ft_isin(char c, const char *del)
 {
@@ -54,4 +57,17 @@ void	ft_dptr_free(char **dptr, int len)
 		i++;
 	}
 	free(dptr);
+}
+
+void	ft_ptr_free(char *ptr, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		free(ptr + i);
+		i++;
+	}
+	return ;
 }

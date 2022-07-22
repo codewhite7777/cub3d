@@ -6,12 +6,15 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:01:38 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/22 17:30:50 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+//DEBUG 1 -> log , 0 -> no log
+#define DEBUG 0
 
 typedef enum e_window
 {

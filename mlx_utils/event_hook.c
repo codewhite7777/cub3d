@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:52:10 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 16:07:26 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/22 17:09:59 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ int	key_event(int keycode, t_cub3d *p_data)
 	if (keycode == event_key_right)
 		printf("RIGHT\n");
 	if (keycode == event_key_esc)
+	{
 		printf("ESC\n");
+		close_data(p_data);
+	}
 	(void)p_data;
 	return (0);
 }
 
-int	exit_event(int keycode, t_cub3d *p_data)
+int	exit_event(t_cub3d *p_data)
 {
-	//윈도우 종료
-	printf("exit event\n");
-	(void)keycode;
-	(void)p_data;
-	exit(0);
+	printf("cub3d exit\n");
+	close_data(p_data);
 	return (0);
 }

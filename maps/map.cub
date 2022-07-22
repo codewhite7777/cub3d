@@ -1,8 +1,8 @@
 
- SO     textures/tex_1/south.xpm
-    NO	    textures/tex_1/north.xpm
- EA	textures/tex_1/east.xpm
-WE	    textures/tex_1/west.xpm
+ SO     assets/bluestone.xpm
+    NO	    assets/colorstone.xpm
+ EA	assets/eagle.xpm
+WE	    assets/wood.xpm
 
 	F	0 ,0	,          0
 			C 255,255,255
@@ -18,12 +18,3 @@ WE	    textures/tex_1/west.xpm
 1111111   1221
 101E221   111
 1111111
-1
-11
-11
-11
-
-
-
-
-

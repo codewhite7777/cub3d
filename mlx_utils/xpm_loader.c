@@ -6,21 +6,22 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:43:50 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 14:10:34 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/22 19:00:03 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include <mlx.h>
 #include "xpm_loader.h"
+#include <stdlib.h>
+#include "../utils/ft_utils_01.h"
+#include "../utils/ft_utils_02.h"
 
 int	xpm_load(t_cub3d *p_data)
 {
 	int	idx;
-	int	err;
 
 	idx = 0;
-	err = 0;
 	while (idx < ASSET_MAX)
 	{
 		p_data->xpm_data[idx].img = mlx_xpm_file_to_image(p_data->mlx.mlx, \
@@ -28,22 +29,24 @@ int	xpm_load(t_cub3d *p_data)
 		&p_data->xpm_data[idx].height);
 		if (!p_data->xpm_data[idx].img)
 		{
-			xpm_free(idx, p_data);
-			return (!err);
+			ft_dptr_free(p_data->file_ptr, p_data->file_line);
+			ft_dptr_free(p_data->content_data.content_ptr, p_data->content_data.content_line);
+			xpm_buf_free(idx, p_data);
+			ft_exit("Error\nInvalid xpm file", 1);
 		}
 		idx++;
 	}
-	return (err);
+	return (0);
 }
 
-void	xpm_free(int index, t_cub3d *p_data)
+void	xpm_buf_free(int index, t_cub3d *p_data)
 {
 	int	idx;
 
 	idx = 0;
 	while (idx < index)
 	{
-		mlx_destroy_image(p_data->mlx.mlx, p_data->xpm_data[idx].img);
+		free(p_data->parse_data.asset_file[idx]);
 		idx++;
 	}
 	return ;
