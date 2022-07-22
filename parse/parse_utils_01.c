@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_01.h                                      :+:      :+:    :+:   */
+/*   parse_utils_01.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 20:07:49 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:12:51 by alee             ###   ########.fr       */
+/*   Created: 2022/07/22 14:38:04 by alee              #+#    #+#             */
+/*   Updated: 2022/07/22 14:40:26 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTILS_01_H
-# define FT_UTILS_01_H
-# include "../cub3d.h"
+#include "parse_utils_01.h"
+#include "../libft/libft.h"
 
-void	ft_exit(const char *msg, int exit_code);
-int		split_count(char ***buf);
-void	split_free(char **buf);
+char	*line_convert(char *line)
+{
+	int	idx;
 
-#endif
+	idx = 0;
+	while (line[idx] != '\0')
+	{
+		if (ft_isspace(line[idx]))
+			line[idx] = ' ';
+		idx++;
+	}
+	return (line);
+}
+
+int		insert_rgb(int r, int g, int b)
+{
+	int	ret;
+
+	ret = 0;
+	ret |= (r << 16);
+	ret |= (g << 8);
+	ret |= b;
+	return (ret);
+}

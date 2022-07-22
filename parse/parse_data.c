@@ -6,27 +6,28 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 00:07:33 by alee              #+#    #+#             */
-/*   Updated: 2022/07/21 13:29:13 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/22 15:14:54 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "../libft/libft.h"
 #include "../utils/ft_utils_01.h"
+#include "../utils/ft_utils_02.h"
 #include "parse_data.h"
+#include "parse_utils_01.h"
 
 int	parse_data(t_cub3d *p_data)
 {
-	int	idx;
-	int parse_cnt;
-	t_parse parse_type;
+	int		idx;
+	int		parse_cnt;
+	t_parse	parse_type;
 
 	parse_cnt = 0;
 	idx = 0;
-	while (idx < p_data->map_line && parse_cnt < 6)
+	while (idx < p_data->file_line && parse_cnt < 6)
 	{
-		parse_type = parse_line(p_data->map_ptr[idx], p_data);
-		// 중복방지와 map_content 시작 인덱스를 찾기위해 추가
+		parse_type = parse_line(p_data->file_ptr[idx], p_data);
 		if (parse_type == PARSE_ERROR)
 			ft_exit("Error\nInvalid parse symbol", 1);
 		if (parse_type != PARSE_NONE)
@@ -37,7 +38,7 @@ int	parse_data(t_cub3d *p_data)
 	p_data->content_data.content_idx = idx;
 	if (p_data->parse_flag != PARSE_FINISH)
 	{
-		ft_map_free(p_data, p_data->map_line);
+		ft_dptr_free(p_data->file_ptr, p_data->file_line);
 		ft_exit("Error\nIncomplete data", 1);
 	}
 	return (0);
@@ -70,7 +71,7 @@ int	parse_asset(char *line, t_asset type, t_parse ret, t_cub3d *p_data)
 	buf = ft_split(line_convert(line), ' ');
 	if (!buf)
 	{
-		ft_map_free(p_data, p_data->map_line);
+		ft_dptr_free(p_data->file_ptr, p_data->file_line);
 		ft_exit("Error\nMemory allocation fail(split)", 1);
 	}
 	if (split_count(&buf) != 2)
@@ -90,7 +91,7 @@ int	parse_rgb(char *line, const char *type, t_parse ret, t_cub3d *p_data)
 	buf = ft_split(line_convert(ft_strchr(line_convert(line), *type) + 1), ',');
 	if (!buf)
 	{
-		ft_map_free(p_data, p_data->map_line);
+		ft_dptr_free(p_data->file_ptr, p_data->file_line);
 		ft_exit("Error\nMemory allocation fail(split)", 1);
 	}
 	if (split_count(&buf) != 3)
@@ -105,30 +106,5 @@ int	parse_rgb(char *line, const char *type, t_parse ret, t_cub3d *p_data)
 		p_data->parse_data.f_color = \
 		insert_rgb(ft_atoi(buf[0]), ft_atoi(buf[1]), ft_atoi(buf[2]));
 	split_free(buf);
-	return (ret);
-}
-
-char	*line_convert(char *line)
-{
-	int	idx;
-
-	idx = 0;
-	while (line[idx] != '\0')
-	{
-		if (ft_isspace(line[idx]))
-			line[idx] = ' ';
-		idx++;
-	}
-	return (line);
-}
-
-int		insert_rgb(int r, int g, int b)
-{
-	int	ret;
-
-	ret = 0;
-	ret |= (r << 16);
-	ret |= (g << 8);
-	ret |= b;
 	return (ret);
 }

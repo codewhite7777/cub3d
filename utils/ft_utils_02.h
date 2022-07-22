@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_01.h                                      :+:      :+:    :+:   */
+/*   ft_utils_02.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 20:07:49 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:12:51 by alee             ###   ########.fr       */
+/*   Created: 2022/07/22 15:12:33 by alee              #+#    #+#             */
+/*   Updated: 2022/07/22 15:12:53 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTILS_01_H
-# define FT_UTILS_01_H
-# include "../cub3d.h"
+#ifndef FT_UTILS_02_H
+# define FT_UTILS_02_H
 
-void	ft_exit(const char *msg, int exit_code);
-int		split_count(char ***buf);
-void	split_free(char **buf);
+int		ft_isin_line(const char *line, const char *del);
+int		ft_isin(char c, const char *del);
+void	ft_dptr_free(char **dptr, int len);
 
 #endif

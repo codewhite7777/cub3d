@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   content_checker.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/22 14:41:27 by dongkim           #+#    #+#             */
+/*   Updated: 2022/07/22 15:17:55 by alee             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 #include "../libft/libft.h"
 #include "../utils/ft_utils_01.h"
+#include "../utils/ft_utils_02.h"
 #include "content_checker.h"
 #include "../utils/debug.h"
 
@@ -11,24 +24,24 @@ static int	set_content_data(t_cub3d *p_data)
 	int	idx;
 	int	line_len;
 
-	while (!ft_strlen(p_data->map_ptr[p_data->content_data.content_idx]))
+	while (!ft_strlen(p_data->file_ptr[p_data->content_data.content_idx]))
 		p_data->content_data.content_idx++;
 	idx = p_data->content_data.content_idx;
-	while (ft_strlen(p_data->map_ptr[idx]) && idx < p_data->map_line)
+	while (ft_strlen(p_data->file_ptr[idx]) && idx < p_data->file_line)
 	{
-		line_len = ft_strlen(p_data->map_ptr[idx]);
+		line_len = ft_strlen(p_data->file_ptr[idx]);
 		if (p_data->content_data.content_len < line_len)
 			p_data->content_data.content_len = line_len;
-		if (ft_isin_line(p_data->map_ptr[idx], "\t\n\v\f\r NEWS012") != line_len)
+		if (ft_isin_line(p_data->file_ptr[idx], "\t\n\v\f\r NEWS012") != line_len)
 			return (0);
 		p_data->content_data.player_cnt
-			+= ft_isin_line(p_data->map_ptr[idx], "NEWS");
+			+= ft_isin_line(p_data->file_ptr[idx], "NEWS");
 		p_data->content_data.content_line++;
 		idx++;
 	}
-	while (idx < p_data->map_line && ft_strlen(p_data->map_ptr[idx]) == 0)
+	while (idx < p_data->file_line && ft_strlen(p_data->file_ptr[idx]) == 0)
 		idx++;
-	return (idx == p_data->map_line && p_data->content_data.player_cnt == 1);
+	return (idx == p_data->file_line && p_data->content_data.player_cnt == 1);
 }
 
 static char	**content_malloc(t_cub3d *p_data, char setval)
@@ -62,11 +75,11 @@ static void	set_content(t_cub3d *p_data)
 	{
 		j = 0;
 		line_len
-			= ft_strlen(p_data->map_ptr[p_data->content_data.content_idx + i]);
+			= ft_strlen(p_data->file_ptr[p_data->content_data.content_idx + i]);
 		while (j < line_len)
 		{
 			p_data->content_data.content_ptr[i][j]
-				+= p_data->map_ptr[p_data->content_data.content_idx + i][j];
+				+= p_data->file_ptr[p_data->content_data.content_idx + i][j];
 			j++;
 		}
 		i++;
@@ -115,9 +128,9 @@ static void	content_close_check(t_cub3d *p_data)
 		}
 		i++;
 	}
-	// debug
 	debug_print_dptr_toint("===== VISIT =====", visit_ptr, i, j);
-	debug_print_dptr_toint("===== CONTENT =====", p_data->content_data.content_ptr, i, j);
+	debug_print_dptr_toint("===== CONTENT =====", \
+	p_data->content_data.content_ptr, i, j);
 	ft_dptr_free(visit_ptr, p_data->content_data.content_line);
 }
 

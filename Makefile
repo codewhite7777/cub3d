@@ -6,11 +6,11 @@
 #    By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:38:45 by alee              #+#    #+#              #
-#    Updated: 2022/07/21 00:07:27 by alee             ###   ########.fr        #
+#    Updated: 2022/07/22 15:13:43 by alee             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = GCC
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
@@ -28,22 +28,27 @@ LIBFT_FILE = ft_isalnum ft_isprint ft_memcmp ft_putchar_fd ft_split \
 
 GNL_FILE = get_next_line
 
-UTILS_FILE = ft_utils_01 debug
+UTILS_FILE = ft_utils_01 ft_utils_02 debug
 
-PARSE_FILE = file_loader parse_data content_checker
+PARSE_FILE = file_loader parse_data content_checker parse_utils_01
+
+MLX_FILE = mlx_initializer xpm_loader event_hook
 
 LIBFT_SRC = $(addprefix libft/,$(addsuffix .c, $(LIBFT_FILE)))
 GNL_SRC = $(addprefix get_next_line/,$(addsuffix .c, $(GNL_FILE)))
 UTILS_SRC = $(addprefix utils/,$(addsuffix .c, $(UTILS_FILE)))
 PARSE_SRC = $(addprefix parse/,$(addsuffix .c, $(PARSE_FILE)))
+MLX_SRC = $(addprefix mlx_utils/,$(addsuffix .c, $(MLX_FILE)))
 
 LIBFT_OBJ = $(LIBFT_SRC:.c=.o)
 GNL_OBJ = $(GNL_SRC:.c=.o)
 UTILS_OBJ = $(UTILS_SRC:.c=.o)
 PARSE_OBJ = $(PARSE_SRC:.c=.o)
+MLX_OBJ = $(MLX_SRC:.c=.o)
 
-SRC = $(addsuffix .c, $(FILE)) $(LIBFT_SRC) $(GNL_SRC) $(UTILS_SRC) $(PARSE_SRC)
-OBJ = $(addsuffix .o, $(FILE)) $(LIBFT_OBJ) $(GNL_OBJ) $(UTILS_OBJ) $(PARSE_OBJ)
+
+SRC = $(addsuffix .c, $(FILE)) $(LIBFT_SRC) $(GNL_SRC) $(UTILS_SRC) $(PARSE_SRC) $(MLX_SRC)
+OBJ = $(addsuffix .o, $(FILE)) $(LIBFT_OBJ) $(GNL_OBJ) $(UTILS_OBJ) $(PARSE_OBJ) $(MLX_OBJ)
 
 all: $(NAME)
 
@@ -63,3 +68,4 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
+

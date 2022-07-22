@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_01.h                                      :+:      :+:    :+:   */
+/*   xpm_loader.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 20:07:49 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:12:51 by alee             ###   ########.fr       */
+/*   Created: 2022/07/22 13:42:22 by alee              #+#    #+#             */
+/*   Updated: 2022/07/22 13:56:13 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTILS_01_H
-# define FT_UTILS_01_H
+#ifndef XPM_LOADER_H
+# define XPM_LOADER_H
 # include "../cub3d.h"
 
-void	ft_exit(const char *msg, int exit_code);
-int		split_count(char ***buf);
-void	split_free(char **buf);
+int		xpm_load(t_cub3d *p_data);
+void	xpm_free(int index, t_cub3d *p_data);
 
 #endif

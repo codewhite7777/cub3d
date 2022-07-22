@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/07/21 02:26:25 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/22 15:01:38 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef enum e_window
 {
 	WIN_WIDTH = 960,
-	WIN_HEIGHT = 1000,
+	WIN_HEIGHT = 540,
 }			t_window;
 
 typedef enum e_asset
@@ -25,6 +25,7 @@ typedef enum e_asset
 	SO = 1,
 	WE = 2,
 	EA = 3,
+	ASSET_MAX = 4,
 }			t_asset;
 
 typedef enum e_parse
@@ -45,11 +46,19 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
+	void		*img_ptr;
 }				t_mlx;
+
+typedef struct s_xpm
+{
+	void	*img;
+	int		width;
+	int		height;
+}				t_xpm;
 
 typedef struct s_parse_data
 {
-	char	*asset_file[4];
+	char	*asset_file[ASSET_MAX];
 	int		c_color;
 	int		f_color;
 }				t_parse_data;
@@ -68,11 +77,13 @@ typedef struct	s_cub3d
 	t_mlx			mlx;
 	t_parse_data	parse_data;
 	unsigned char	parse_flag;
-	int				map_line;
-	char			**map_ptr;
+	int				file_line;
+	char			**file_ptr;
 	t_content_data	content_data;
+	t_xpm			xpm_data[ASSET_MAX];
 }				t_cub3d;
 
 void	init_data(int argc, char* argv[], t_cub3d *p_data);
+void	close_data(t_cub3d *p_data);
 
 #endif

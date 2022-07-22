@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 00:07:07 by alee              #+#    #+#             */
-/*   Updated: 2022/07/21 13:15:00 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/22 14:38:47 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,5 @@ int		parse_data(t_cub3d *p_data);
 t_parse	parse_line(char *line, t_cub3d *p_data);
 int		parse_asset(char *line, t_asset type, t_parse ret, t_cub3d *p_data);
 int		parse_rgb(char *line, const char *type, t_parse ret, t_cub3d *p_data);
-char	*line_convert(char *line);
-int		insert_rgb(int r, int g, int b);
 
 #endif

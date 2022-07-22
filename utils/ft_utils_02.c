@@ -1,45 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_01.c                                      :+:      :+:    :+:   */
+/*   ft_utils_02.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 20:51:11 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:13:12 by alee             ###   ########.fr       */
+/*   Created: 2022/07/22 15:13:00 by alee              #+#    #+#             */
+/*   Updated: 2022/07/22 15:13:29 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../cub3d.h"
+#include "ft_utils_02.h"
+#include <stdlib.h>
 
-void	ft_exit(const char *msg, int exit_code)
-{
-	if (msg)
-		ft_putstr_fd((char *)msg, STDERR_FILENO);
-	exit(exit_code);
-	return ;
-}
-
-int	split_count(char ***buf)
-{
-	int	count;
-
-	count = 0;
-	while ((*buf)[count])
-		count++;
-	return (count);
-}
-
-void	split_free(char **buf)
+int	ft_isin(char c, const char *del)
 {
 	int	idx;
 
 	idx = 0;
-	while (buf[idx])
+	while (del[idx])
 	{
-		free(buf[idx]);
+		if (del[idx] == c)
+			return (1);
 		idx++;
 	}
-	free(buf);
+	return (0);
+}
+
+int	ft_isin_line(const char *line, const char *del)
+{
+	int	idx;
+	int	cnt;
+
+	idx = 0;
+	cnt = 0;
+	while (line[idx])
+	{
+		if (ft_isin(line[idx], del))
+			cnt++;
+		idx++;
+	}
+	return (cnt);
+}
+
+void	ft_dptr_free(char **dptr, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		free(dptr[i]);
+		i++;
+	}
+	free(dptr);
 }
