@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/07/24 01:34:29 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/24 04:31:57 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ typedef struct s_parse_data
 
 typedef struct s_player_data
 {
-	float	xpos;
-	float	ypos;
-	float	pdx;
-	float	pdy;
-	float	pa;
+	double	xpos;
+	double	ypos;
+	double	pdx;
+	double	pdy;
+	double	radian;
 }				t_player_data;
 
 typedef struct s_content_data

@@ -6,11 +6,12 @@
 /*   By: dongkim <dongkim@student.42seoul.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 20:39:15 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/23 20:39:36 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/24 06:24:45 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "content_checker.h"
+#include "../engine/move_player.h"
 
 void	dfs_content_check(t_cub3d *p_data, char **visit_ptr, int y, int x)
 {
@@ -29,6 +30,20 @@ void	dfs_content_check(t_cub3d *p_data, char **visit_ptr, int y, int x)
 	dfs_content_check(p_data, visit_ptr, y + 1, x);
 	dfs_content_check(p_data, visit_ptr, y, x - 1);
 	dfs_content_check(p_data, visit_ptr, y, x + 1);
+}
+
+double	trans_radian(unsigned char direction)
+{
+	if (direction == 'N')
+		return (PI / 2 * 3);
+	if (direction == 'E')
+		return (0);
+	if (direction == 'W')
+		return (PI);
+	if (direction == 'S')
+		return (PI / 2);
+	else
+		return (0);
 }
 
 char	**content_malloc(t_cub3d *p_data, char setval)
