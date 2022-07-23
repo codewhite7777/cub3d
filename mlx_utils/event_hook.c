@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:52:10 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 17:09:59 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/24 01:34:24 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,46 @@
 
 int	key_event(int keycode, t_cub3d *p_data)
 {
+	if (keycode == event_key_up || keycode == event_key_down
+		|| keycode == event_key_left || keycode == event_key_right
+		|| keycode == event_key_arrow_left
+		|| keycode == event_key_arrow_right
+		|| keycode == event_key_arrow_up
+		|| keycode == event_key_arrow_down)
+		p_data->key_pressed[(unsigned char)keycode] = 1;
 	if (keycode == event_key_up)
 		printf("UP\n");
-	if (keycode == event_key_down)
+	else if (keycode == event_key_down)
 		printf("DOWN\n");
-	if (keycode == event_key_left)
+	else if (keycode == event_key_left)
 		printf("LEFT\n");
-	if (keycode == event_key_right)
+	else if (keycode == event_key_right)
 		printf("RIGHT\n");
-	if (keycode == event_key_esc)
+	else if (keycode == event_key_esc)
 	{
 		printf("ESC\n");
 		close_data(p_data);
 	}
-	(void)p_data;
+	return (0);
+}
+
+int	key_release_event(int keycode, t_cub3d *p_data)
+{
+	if (keycode == event_key_up || keycode == event_key_down
+		|| keycode == event_key_left || keycode == event_key_right
+		|| keycode == event_key_arrow_left
+		|| keycode == event_key_arrow_right
+		|| keycode == event_key_arrow_up
+		|| keycode == event_key_arrow_down)
+		p_data->key_pressed[(unsigned char)keycode] = 0;
+	if (keycode == event_key_up)
+		printf("UP RELEASE\n");
+	else if (keycode == event_key_down)
+		printf("DOWN RELEASE\n");
+	else if (keycode == event_key_left)
+		printf("LEFT RELEASE\n");
+	else if (keycode == event_key_right)
+		printf("RIGHT RELEASE\n");
 	return (0);
 }
 

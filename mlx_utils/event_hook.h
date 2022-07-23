@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:51:30 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 17:07:03 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/24 01:33:17 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,15 @@ typedef enum	e_key_event
 	event_key_down = 1,
 	event_key_right = 2,
 	event_key_up = 13,
+	event_key_arrow_left = 123,
+	event_key_arrow_up = 126,
+	event_key_arrow_right = 124,
+	event_key_arrow_down = 125,
 	event_key_esc = 53,
 }				t_key_event;
 
 int	key_event(int keycode, t_cub3d *p_data);
+int	key_release_event(int keycode, t_cub3d *p_data);
 int	exit_event(t_cub3d *p_data);
 
 #endif

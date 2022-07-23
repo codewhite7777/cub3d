@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 17:30:50 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/24 01:34:29 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,22 @@ typedef enum e_parse
 	PARSE_FINISH = 63,
 }			t_parse;
 
+typedef struct s_img
+{
+	void            *img;
+	char            *addr;
+	unsigned int    width;
+	unsigned int    height;
+	int             bits_per_pixel;
+	int             line_length;
+	int             endian;
+}					t_img;
+
 typedef struct s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
-	void		*img_ptr;
+	t_img		img;
 }				t_mlx;
 
 typedef struct s_xpm
@@ -66,6 +77,15 @@ typedef struct s_parse_data
 	int		f_color;
 }				t_parse_data;
 
+typedef struct s_player_data
+{
+	float	xpos;
+	float	ypos;
+	float	pdx;
+	float	pdy;
+	float	pa;
+}				t_player_data;
+
 typedef struct s_content_data
 {
 	char	**content_ptr;
@@ -75,7 +95,7 @@ typedef struct s_content_data
 	int		player_cnt;
 }				t_content_data;
 
-typedef struct	s_cub3d
+typedef struct s_cub3d
 {
 	t_mlx			mlx;
 	t_parse_data	parse_data;
@@ -83,7 +103,9 @@ typedef struct	s_cub3d
 	int				file_line;
 	char			**file_ptr;
 	t_content_data	content_data;
+	t_player_data	player;
 	t_xpm			xpm_data[ASSET_MAX];
+	char			key_pressed[256];
 }				t_cub3d;
 
 void	init_data(int argc, char* argv[], t_cub3d *p_data);

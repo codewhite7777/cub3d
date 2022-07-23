@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 17:46:24 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/24 01:58:33 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@
 
 //debug
 #include<stdio.h>
+#include "engine/draw_minimap.h"
+#include "engine/move_player.h"
+
+static int	loop_main(t_cub3d *p_data)
+{
+	move_player_calculator(p_data);
+	draw_minimap(p_data, 100, 10, 20);
+	mlx_put_image_to_window(p_data->mlx.mlx,
+		p_data->mlx.mlx_win, p_data->mlx.img.img, 0, 0);
+	return (0);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -24,7 +35,10 @@ int	main(int argc, char *argv[])
 
 	ft_bzero(&data, sizeof(data));
 	init_data(argc, argv, &data);
+
+	mlx_loop_hook(data.mlx.mlx, loop_main, &data);
+
 	mlx_loop(data.mlx.mlx);
-	// system("leaks cub3D");
+	//system("leaks cub3D");
 	return (0);
 }
