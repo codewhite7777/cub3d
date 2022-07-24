@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap.h                                     :+:      :+:    :+:   */
+/*   draw_screen.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 01:21:24 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/25 04:29:01 by alee             ###   ########.fr       */
+/*   Created: 2022/07/24 23:52:23 by alee              #+#    #+#             */
+/*   Updated: 2022/07/24 23:55:53 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_MINIMAP_H
-# define DRAW_MINIMAP_H
-
-# include <mlx.h>
-# include "../mlx_utils/mlx_draw.h"
+#ifndef DRAW_SCREEN_H
+# define DRAW_SCREEN_H
 # include "../cub3d.h"
 
-typedef struct s_minimap
-{
-	unsigned int	width;
-	unsigned int	height;
-}				t_minimap;
-
-void	draw_minimap(t_cub3d *p_data, unsigned int x, unsigned int y, \
-												unsigned int tile_size);
+void	draw_screen(t_cub3d *p_data);
 
 #endif

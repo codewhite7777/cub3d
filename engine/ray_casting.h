@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap.h                                     :+:      :+:    :+:   */
+/*   ray_casting.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 01:21:24 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/25 04:29:01 by alee             ###   ########.fr       */
+/*   Created: 2022/07/25 00:18:26 by alee              #+#    #+#             */
+/*   Updated: 2022/07/25 04:16:57 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_MINIMAP_H
-# define DRAW_MINIMAP_H
+#ifndef RAY_CASTING_H
+# define RAY_CASTING_H
 
-# include <mlx.h>
-# include "../mlx_utils/mlx_draw.h"
-# include "../cub3d.h"
-
-typedef struct s_minimap
+typedef struct s_ray
 {
-	unsigned int	width;
-	unsigned int	height;
-}				t_minimap;
+	int			direction;
+	double		distance;
 
-void	draw_minimap(t_cub3d *p_data, unsigned int x, unsigned int y, \
-												unsigned int tile_size);
+	int			side;
+	t_pos		map_pos;
+	t_pos		step;
+	t_pos		side_distance;
+	t_pos		delta_distance;
+}				t_ray;
+
+void	ray_cast(t_cub3d *p_data, t_ray *o_ray, int col);
+// int		is_end(t_pos *cur_pos);
 
 #endif

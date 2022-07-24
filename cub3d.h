@@ -6,14 +6,13 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/07/24 04:31:57 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/25 00:12:22 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-//DEBUG 1 -> log , 0 -> no log
 #define DEBUG 0
 
 typedef enum e_window
@@ -77,12 +76,15 @@ typedef struct s_parse_data
 	int		f_color;
 }				t_parse_data;
 
+typedef struct s_pos
+{
+	double	x;
+	double	y;
+}				t_pos;
+
 typedef struct s_player_data
 {
-	double	xpos;
-	double	ypos;
-	double	pdx;
-	double	pdy;
+	t_pos	pos;
 	double	radian;
 }				t_player_data;
 

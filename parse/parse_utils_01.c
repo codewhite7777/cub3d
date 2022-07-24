@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:38:04 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 14:40:26 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/25 04:20:21 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*line_convert(char *line)
 	return (line);
 }
 
-int		insert_rgb(int r, int g, int b)
+int	insert_rgb(int r, int g, int b)
 {
 	int	ret;
 

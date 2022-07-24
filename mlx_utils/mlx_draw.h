@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_draw.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongkim <dongkim@student.42seoul.fr>       +#+  +:+       +#+        */
+/*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:56 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/24 00:17:09 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/25 04:22:30 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include "../cub3d.h"
 
-void	mlx_pixel_to_image(t_img *img,
+void	mlx_pixel_to_image(t_img *img, \
 		unsigned int x, unsigned int y, unsigned int color);
-void	mlx_draw_square(t_img *img, unsigned int *pos,
+void	mlx_draw_square(t_img *img, unsigned int *pos, \
 		unsigned int size, unsigned int color);
 
 #endif

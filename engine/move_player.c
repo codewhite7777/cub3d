@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:22:05 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/24 23:16:36 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/25 04:26:48 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static void	move_player_calculator(t_cub3d *p_data,
 
 	player = &p_data->player;
 	content = &p_data->content_data;
-	tmp = player->xpos + (x_cor * cos(radian)) * 0.1;
-	if (content->content_ptr[(unsigned int)player->ypos][(unsigned int)tmp] != 1)
-		player->xpos = tmp;
-	tmp = player->ypos + (y_cor * sin(radian)) * 0.1;
-	if (content->content_ptr[(unsigned int)tmp][(unsigned int)player->xpos] != 1)
-		player->ypos = tmp;
+	tmp = player->pos.x + (x_cor * cos(radian)) * 0.1;
+	if (content->content_ptr[(unsigned int)player->pos.y][(unsigned int)tmp] != 1)
+		player->pos.x = tmp;
+	tmp = player->pos.y + (y_cor * sin(radian)) * 0.1;
+	if (content->content_ptr[(unsigned int)tmp][(unsigned int)player->pos.x] != 1)
+		player->pos.y = tmp;
 }
 
 void	move_player(t_cub3d *p_data, char *key_pressed)
@@ -51,4 +51,3 @@ void	move_player(t_cub3d *p_data, char *key_pressed)
 	if (player->radian >= (2 * PI))
 		player->radian -= (2 * PI);
 }
-

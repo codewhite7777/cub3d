@@ -1,6 +1,14 @@
 {
 	"files.associations": {
 		"__node_handle": "c",
-		"mlx_initializer.h": "c"
+		"mlx_initializer.h": "c",
+		"iterator": "c",
+		"locale": "c",
+		"__split_buffer": "c",
+		"algorithm": "c",
+		"functional": "c",
+		"string": "c",
+		"unordered_map": "c",
+		"vector": "c"
 	}
 }

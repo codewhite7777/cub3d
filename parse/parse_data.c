@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 00:07:33 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:14:54 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/25 04:20:34 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	parse_data(t_cub3d *p_data)
 
 t_parse	parse_line(char *line, t_cub3d *p_data)
 {
-
 	if (ft_strnstr(line, "NO", ft_strlen(line)))
 		return (parse_asset(line, NO, PARSE_NORTH, p_data));
 	else if (ft_strnstr(line, "SO", ft_strlen(line)))
@@ -59,7 +58,7 @@ t_parse	parse_line(char *line, t_cub3d *p_data)
 		return (parse_rgb(line, "F", PARSE_FLOOR, p_data));
 	else if (ft_strnstr(line, "C", ft_strlen(line)))
 		return (parse_rgb(line, "C", PARSE_CEIL, p_data));
-	if (ft_strlen(line)) // if (!line_isspace(line))
+	if (ft_strlen(line))
 		return (PARSE_ERROR);
 	return (PARSE_NONE);
 }

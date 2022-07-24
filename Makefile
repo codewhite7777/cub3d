@@ -6,7 +6,7 @@
 #    By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:38:45 by alee              #+#    #+#              #
-#    Updated: 2022/07/24 01:57:42 by dongkim          ###   ########.fr        #
+#    Updated: 2022/07/25 00:18:49 by alee             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ UTILS_FILE = ft_utils_01 ft_utils_02 debug
 
 PARSE_FILE = file_loader parse_data content_checker content_checker_utils parse_utils_01
 
-ENGINE_FILE = draw_minimap move_player
+ENGINE_FILE = draw_minimap move_player draw_screen ray_casting
 
 MLX_FILE = mlx_initializer xpm_loader event_hook mlx_draw
 

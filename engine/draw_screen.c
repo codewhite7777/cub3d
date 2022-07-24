@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap.h                                     :+:      :+:    :+:   */
+/*   draw_screen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 01:21:24 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/25 04:29:01 by alee             ###   ########.fr       */
+/*   Created: 2022/07/24 23:52:35 by alee              #+#    #+#             */
+/*   Updated: 2022/07/25 04:30:47 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_MINIMAP_H
-# define DRAW_MINIMAP_H
+#include "../cub3d.h"
+#include "ray_casting.h"
 
-# include <mlx.h>
-# include "../mlx_utils/mlx_draw.h"
-# include "../cub3d.h"
-
-typedef struct s_minimap
+void	draw_screen(t_cub3d *p_data)
 {
-	unsigned int	width;
-	unsigned int	height;
-}				t_minimap;
+	int		i;
+	t_ray	ray_result;
 
-void	draw_minimap(t_cub3d *p_data, unsigned int x, unsigned int y, \
-												unsigned int tile_size);
-
-#endif
+	i = 0;
+	while (i < WIN_WIDTH)
+	{
+		ray_cast(p_data, &ray_result, i);
+		i++;
+	}
+	(void)p_data;
+	(void)ray_result;
+	return ;
+}

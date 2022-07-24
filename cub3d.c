@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:58:15 by alee              #+#    #+#             */
-/*   Updated: 2022/07/23 20:32:19 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/25 00:35:38 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 #include "mlx_utils/xpm_loader.h"
 #include "utils/debug.h"
 #include <stdlib.h>
-
-
-//debug
-#include <mlx.h>
-#include <stdio.h>
-
 
 void	init_data(int argc, char* argv[], t_cub3d *p_data)
 {

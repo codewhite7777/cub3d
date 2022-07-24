@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:43:50 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 19:00:03 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/25 04:21:39 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	xpm_load(t_cub3d *p_data)
 		if (!p_data->xpm_data[idx].img)
 		{
 			ft_dptr_free(p_data->file_ptr, p_data->file_line);
-			ft_dptr_free(p_data->content_data.content_ptr, p_data->content_data.content_line);
+			ft_dptr_free(p_data->content_data.content_ptr, \
+			p_data->content_data.content_line);
 			xpm_buf_free(idx, p_data);
 			ft_exit("Error\nInvalid xpm file", 1);
 		}

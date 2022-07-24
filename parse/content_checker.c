@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:41:27 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/24 06:23:44 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/25 00:12:43 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ static void	set_player(t_cub3d *p_data)
 			c = &p_data->content_data.content_ptr[i][j];
 			if (*c >= ('E' - 0x30))
 			{
-				p_data->player.ypos = i + 0.5;
-				p_data->player.xpos = j + 0.5;
+				p_data->player.pos.y = i + 0.5;
+				p_data->player.pos.x = j + 0.5;
 				p_data->player.radian = trans_radian(*c + 0x30);
 				*c = 0;
 				return ;

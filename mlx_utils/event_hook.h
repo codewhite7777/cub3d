@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:51:30 by alee              #+#    #+#             */
-/*   Updated: 2022/07/24 01:33:17 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/25 04:22:13 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define EVENT_HOOK_H
 # include "../cub3d.h"
 
-typedef enum	e_x_event
+typedef enum e_x_event
 {
 	event_key_press = 2,
 	event_key_release = 3,
@@ -24,7 +24,7 @@ typedef enum	e_x_event
 	event_window_destroy = 17,
 }				t_x_event;
 
-typedef enum	e_key_event
+typedef enum e_key_event
 {
 	event_key_left = 0,
 	event_key_down = 1,

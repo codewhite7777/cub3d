@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/07/24 23:13:03 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/25 04:02:53 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 #include<stdio.h>
 #include "engine/draw_minimap.h"
 #include "engine/move_player.h"
+#include "engine/draw_screen.h"
 
 static int	loop_main(t_cub3d *p_data)
 {
 	move_player(p_data, p_data->key_pressed);
+	draw_screen(p_data);
 	draw_minimap(p_data, 100, 10, 10);
 	mlx_put_image_to_window(p_data->mlx.mlx,
 		p_data->mlx.mlx_win, p_data->mlx.img.img, 0, 0);
@@ -35,9 +37,7 @@ int	main(int argc, char *argv[])
 
 	ft_bzero(&data, sizeof(data));
 	init_data(argc, argv, &data);
-
 	mlx_loop_hook(data.mlx.mlx, loop_main, &data);
-
 	mlx_loop(data.mlx.mlx);
 	//system("leaks cub3D");
 	return (0);
