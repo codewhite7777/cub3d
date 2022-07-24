@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:21:17 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/24 06:01:51 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/24 23:08:36 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 # include "../mlx_utils/event_hook.h"
 # include <math.h>
 
-void	move_player(t_player_data *player, char *key_pressed);
+void	move_player(t_cub3d *p_data, char *key_pressed);
 
 #endif
