@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:06:41 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/23 20:12:43 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/25 23:44:04 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,43 @@ void	mlx_draw_square(t_img *img, unsigned int *pos,
 			j++;
 		}
 		i++;
+	}
+}
+
+#include <stdio.h>
+void	mlx_draw_line(t_img *img,
+		unsigned int *s_pos, unsigned int *d_pos, unsigned int color)
+{
+	int	x;
+	int	y;
+	int	x_diff;
+	int	y_diff;
+
+	// TODO
+	x = s_pos[0];
+	y = s_pos[1];
+	x_diff = d_pos[0] - s_pos[0];
+	y_diff = d_pos[1] - s_pos[1];
+
+	if (x_diff > y_diff)
+	{
+		while (x <= (int)d_pos[0])
+		{
+			mlx_pixel_to_image(img, x, y, color);
+			x++;
+			if (0 <= (y_diff * (x - (int)s_pos[0]) - x_diff * ((y + 1) - (int)s_pos[1])))
+				y++;
+		}
+	}
+	else
+	{
+		while (y <= (int)d_pos[1])
+		{
+			mlx_pixel_to_image(img, x, y, color);
+			y++;
+			if (0 >= (y_diff * (x + 1 - (int)s_pos[0]) - x_diff * (y - (int)s_pos[1])))
+				x++;
+		}
+
 	}
 }
