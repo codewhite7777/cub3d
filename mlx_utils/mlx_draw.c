@@ -6,11 +6,12 @@
 /*   By: dongkim <dongkim@student.42seoul.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:06:41 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/25 23:44:04 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/27 01:57:30 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_draw.h"
+#include "../utils/ft_utils_02.h"
 
 void	mlx_pixel_to_image(t_img *img,
 		unsigned int x, unsigned int y, unsigned int color)
@@ -46,40 +47,60 @@ void	mlx_draw_square(t_img *img, unsigned int *pos,
 	}
 }
 
-#include <stdio.h>
+static void	mlx_draw_line_sub(t_img *img, t_drawline *dl,
+	int idx, unsigned int color)
+{
+	while (dl->grad_less_one == 1 && dl->x != dl->pos[1][0])
+	{
+		mlx_pixel_to_image(img, dl->x, dl->y, color);
+		dl->x++;
+		if (0 <= (dl->height * (dl->x - dl->pos[0][0])
+				- dl->width * (dl->y + idx - dl->pos[0][1])) * idx)
+			dl->y += idx;
+	}
+	while (dl->grad_less_one == 0 && dl->y != dl->pos[1][1])
+	{
+		mlx_pixel_to_image(img, dl->x, dl->y, color);
+		dl->y += idx;
+		if (0 >= (dl->height * (dl->x + 1 - dl->pos[0][0])
+				- dl->width * (dl->y - dl->pos[0][1])) * idx)
+			dl->x++;
+	}
+}
+
 void	mlx_draw_line(t_img *img,
 		unsigned int *s_pos, unsigned int *d_pos, unsigned int color)
 {
-	int	x;
-	int	y;
-	int	x_diff;
-	int	y_diff;
+	t_drawline	dl;
 
-	// TODO
-	x = s_pos[0];
-	y = s_pos[1];
-	x_diff = d_pos[0] - s_pos[0];
-	y_diff = d_pos[1] - s_pos[1];
-
-	if (x_diff > y_diff)
+	dl.pos[0] = (int *)s_pos;
+	dl.pos[1] = (int *)d_pos;
+	if (s_pos[0] > d_pos[0])
 	{
-		while (x <= (int)d_pos[0])
-		{
-			mlx_pixel_to_image(img, x, y, color);
-			x++;
-			if (0 <= (y_diff * (x - (int)s_pos[0]) - x_diff * ((y + 1) - (int)s_pos[1])))
-				y++;
-		}
+		dl.pos[0] = (int *)d_pos;
+		dl.pos[1] = (int *)s_pos;
 	}
+	dl.x = dl.pos[0][0];
+	dl.y = dl.pos[0][1];
+	dl.width = dl.pos[1][0] - dl.pos[0][0];
+	dl.height = dl.pos[1][1] - dl.pos[0][1];
+	dl.grad_less_one = (dl.height / dl.width) == 0;
+	dl.grad_neg = dl.pos[0][1] > dl.pos[1][1];
+	if (dl.grad_neg == 0)
+		mlx_draw_line_sub(img, &dl, 1, color);
 	else
-	{
-		while (y <= (int)d_pos[1])
-		{
-			mlx_pixel_to_image(img, x, y, color);
-			y++;
-			if (0 >= (y_diff * (x + 1 - (int)s_pos[0]) - x_diff * (y - (int)s_pos[1])))
-				x++;
-		}
+		mlx_draw_line_sub(img, &dl, -1, color);
+}
 
+void	mlx_draw_vertical(t_img *img, unsigned int *s_pos, unsigned int size,
+		unsigned int color)
+{
+	unsigned int	y;
+
+	y = 0;
+	while (y < size)
+	{
+		mlx_pixel_to_image(img, s_pos[0], s_pos[1] + y, color);
+		y++;
 	}
 }

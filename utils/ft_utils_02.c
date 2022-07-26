@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:13:00 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 18:53:11 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/26 18:50:51 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,11 @@ void	ft_ptr_free(char *ptr, int len)
 		i++;
 	}
 	return ;
+}
+
+int	ft_abs(int num)
+{
+	if (num < 0)
+		num *= -1;
+	return (num);
 }
