@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:06:41 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/27 01:57:30 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/27 22:00:36 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	mlx_draw_line_sub(t_img *img, t_drawline *dl,
 		mlx_pixel_to_image(img, dl->x, dl->y, color);
 		dl->x++;
 		if (0 <= (dl->height * (dl->x - dl->pos[0][0])
-				- dl->width * (dl->y + idx - dl->pos[0][1])) * idx)
+			- dl->width * (dl->y + idx - dl->pos[0][1])) * idx)
 			dl->y += idx;
 	}
 	while (dl->grad_less_one == 0 && dl->y != dl->pos[1][1])
@@ -63,7 +63,7 @@ static void	mlx_draw_line_sub(t_img *img, t_drawline *dl,
 		mlx_pixel_to_image(img, dl->x, dl->y, color);
 		dl->y += idx;
 		if (0 >= (dl->height * (dl->x + 1 - dl->pos[0][0])
-				- dl->width * (dl->y - dl->pos[0][1])) * idx)
+			- dl->width * (dl->y - dl->pos[0][1])) * idx)
 			dl->x++;
 	}
 }
@@ -84,6 +84,8 @@ void	mlx_draw_line(t_img *img,
 	dl.y = dl.pos[0][1];
 	dl.width = dl.pos[1][0] - dl.pos[0][0];
 	dl.height = dl.pos[1][1] - dl.pos[0][1];
+	if (dl.width == 0)
+		dl.width = 1;
 	dl.grad_less_one = (dl.height / dl.width) == 0;
 	dl.grad_neg = dl.pos[0][1] > dl.pos[1][1];
 	if (dl.grad_neg == 0)
