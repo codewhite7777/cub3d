@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/27 02:00:07 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 00:01:11 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ static void	draw_content(t_cub3d *p_data, t_minimap *map, \
 			c = \
 		content[(pos[1] - bpos[1]) / tile_size][(pos[0] - bpos[0]) / tile_size];
 			if (c == 1)
-				mlx_draw_square(&p_data->mlx.img, pos, tile_size, 0x00000000);
+				mlx_draw_square(&p_data->mlx.img, pos, tile_size, COLOR_WALL);
 			else if (c == 0 || c == 2)
-				mlx_draw_square(&p_data->mlx.img, pos, tile_size, 0x00FFFFFF);
+				mlx_draw_square(&p_data->mlx.img, pos, tile_size, COLOR_FLOOR);
 			else
-				mlx_draw_square(&p_data->mlx.img, pos, tile_size, 0xAAAAAAAA);
+				mlx_draw_square(&p_data->mlx.img, pos, tile_size, COLOR_NONE);
 			pos[0] += tile_size;
 		}
 		pos[1] += tile_size;
@@ -58,9 +58,10 @@ static void	draw_player(t_player_data *player, t_img *img,
 	pos[1] = player->pos.y * tile_size - (player_size / 2) + bpos[1];
 	if (player_size == 0)
 		player_size = 1;
-	mlx_draw_square(img, pos, player_size, 0x00FF0000);
+	mlx_draw_square(img, pos, player_size, COLOR_PLAYER);
 }
 
+#include "ray_cast.h"
 void	draw_minimap(t_cub3d *p_data, unsigned int x, unsigned int y,
 		unsigned int tile_size)
 {
@@ -72,5 +73,15 @@ void	draw_minimap(t_cub3d *p_data, unsigned int x, unsigned int y,
 	init_minimap(p_data, &minimap, tile_size);
 	draw_content(p_data, &minimap, pos, tile_size);
 	draw_player(&p_data->player, &p_data->mlx.img, pos, tile_size);
-	return ;
+
+	// ray cast test
+	unsigned int	ppos[2];
+	ppos[0] = p_data->player.pos.x * tile_size + pos[0];
+	ppos[1] = p_data->player.pos.y * tile_size + pos[1];
+	unsigned int	dpos[2];
+	double			rpos[2];
+	ray_cast_distance(p_data, p_data->player.radian, rpos);
+	dpos[0] = rpos[0] * tile_size + pos[0];
+	dpos[1] = rpos[1] * tile_size + pos[1];
+	mlx_draw_line(&p_data->mlx.img, ppos, dpos, COLOR_RAY);
 }

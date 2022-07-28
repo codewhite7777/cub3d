@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/07/25 04:02:53 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/27 21:00:45 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 static int	loop_main(t_cub3d *p_data)
 {
 	move_player(p_data, p_data->key_pressed);
-	draw_screen(p_data);
+	//draw_screen(p_data);
 	draw_minimap(p_data, 100, 10, 10);
 	mlx_put_image_to_window(p_data->mlx.mlx,
 		p_data->mlx.mlx_win, p_data->mlx.img.img, 0, 0);
