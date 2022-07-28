@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:21:24 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 00:01:57 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 00:27:39 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "../cub3d.h"
 
 # define COLOR_PLAYER	0x00FF0000
-# define COLOR_RAY		0x00FF0000
+# define COLOR_RAY		0x99FF7F7F
 # define COLOR_WALL		0x00000000
 # define COLOR_FLOOR	0x00FFFFFF
 # define COLOR_NONE		0x00AAAAAA

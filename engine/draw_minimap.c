@@ -6,11 +6,12 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 00:01:11 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 00:23:31 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw_minimap.h"
+#include "ray_cast.h"
 
 static void	init_minimap(t_cub3d *p_data, t_minimap *p_map, \
 													unsigned int tile_size)
@@ -61,7 +62,27 @@ static void	draw_player(t_player_data *player, t_img *img,
 	mlx_draw_square(img, pos, player_size, COLOR_PLAYER);
 }
 
-#include "ray_cast.h"
+static void	draw_sight(t_cub3d *p_data, unsigned int *pos,
+		unsigned int tile_size)
+{
+	unsigned int	ppos[2];
+	unsigned int	dpos[2];
+	double			rpos[2];
+	double			radian;
+
+	ppos[0] = p_data->player.pos.x * tile_size + pos[0];
+	ppos[1] = p_data->player.pos.y * tile_size + pos[1];
+	radian = p_data->player.radian - (PI / 6);
+	while (radian < p_data->player.radian + (PI / 6))
+	{
+		ray_cast_distance(p_data, radian, rpos);
+		dpos[0] = rpos[0] * tile_size + pos[0];
+		dpos[1] = rpos[1] * tile_size + pos[1];
+		mlx_draw_line(&p_data->mlx.img, ppos, dpos, COLOR_RAY);
+		radian += ONE_TO_RAD;
+	}
+}
+
 void	draw_minimap(t_cub3d *p_data, unsigned int x, unsigned int y,
 		unsigned int tile_size)
 {
@@ -73,15 +94,5 @@ void	draw_minimap(t_cub3d *p_data, unsigned int x, unsigned int y,
 	init_minimap(p_data, &minimap, tile_size);
 	draw_content(p_data, &minimap, pos, tile_size);
 	draw_player(&p_data->player, &p_data->mlx.img, pos, tile_size);
-
-	// ray cast test
-	unsigned int	ppos[2];
-	ppos[0] = p_data->player.pos.x * tile_size + pos[0];
-	ppos[1] = p_data->player.pos.y * tile_size + pos[1];
-	unsigned int	dpos[2];
-	double			rpos[2];
-	ray_cast_distance(p_data, p_data->player.radian, rpos);
-	dpos[0] = rpos[0] * tile_size + pos[0];
-	dpos[1] = rpos[1] * tile_size + pos[1];
-	mlx_draw_line(&p_data->mlx.img, ppos, dpos, COLOR_RAY);
+	draw_sight(p_data, pos, tile_size);
 }
