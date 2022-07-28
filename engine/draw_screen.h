@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 23:52:23 by alee              #+#    #+#             */
-/*   Updated: 2022/07/24 23:55:53 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/29 05:54:49 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 # include "../cub3d.h"
 
 void	draw_screen(t_cub3d *p_data);
+void	draw_background(t_cub3d *p_data);
 
 #endif

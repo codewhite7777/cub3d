@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/07/27 19:35:03 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 06:16:00 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 # define PI         3.14159265359
 # define ONE_TO_RAD 0.01745329251
+
+# define WIN_FOV		120
+# define WIN_DISTANCE	2
 
 typedef enum e_window
 {

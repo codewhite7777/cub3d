@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 00:47:55 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 05:48:23 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static void	draw_sight(t_cub3d *p_data, unsigned int *pos,
 
 	ppos[0] = p_data->player.pos.x * tile_size + pos[0];
 	ppos[1] = p_data->player.pos.y * tile_size + pos[1];
-	radian = p_data->player.radian - (PI / 6);
-	while (radian < p_data->player.radian + (PI / 6))
+	radian = p_data->player.radian - (ONE_TO_RAD * WIN_FOV / 2);
+	while (radian < p_data->player.radian + (ONE_TO_RAD * WIN_FOV / 2))
 	{
 		ray_cast_distance(p_data, radian, rpos);
 		dpos[0] = rpos[0] * tile_size + pos[0];
