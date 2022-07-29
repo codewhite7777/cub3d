@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:49:38 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 00:21:44 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 17:50:01 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ typedef struct s_raycast
     int     y_dir;
     int     x_step;
     int     y_step;
+	double	radian;
 }               t_raycast;
 
-double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos);
+double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos,
+		double max_distance);
 
 #endif

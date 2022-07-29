@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:21:24 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 00:27:39 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 17:59:19 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,22 @@
 # define COLOR_FLOOR	0x00FFFFFF
 # define COLOR_NONE		0x00AAAAAA
 
-typedef struct s_minimap
+typedef struct s_minimap_size
 {
 	unsigned int	width;
 	unsigned int	height;
-}				t_minimap;
+}				t_minimap_size;
 
-void	draw_minimap(t_cub3d *p_data, unsigned int x, unsigned int y, \
-												unsigned int tile_size);
+typedef struct s_minimap_setting
+{
+	unsigned int	pos[2];
+	unsigned int	tile_size;
+	t_minimap_size	size;
+}				t_minimap_setting;
+
+void	draw_sight(t_cub3d *p_data, unsigned int *pos,
+		unsigned int tile_size, double max_distance);
+void	draw_minimap(t_cub3d *p_data, t_minimap_setting *settings);
+void	draw_minimap_2(t_cub3d *p_data, t_minimap_setting *settings);
 
 #endif

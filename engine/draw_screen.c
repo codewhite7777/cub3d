@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 23:52:35 by alee              #+#    #+#             */
-/*   Updated: 2022/07/29 06:12:44 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 18:00:05 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	draw_screen(t_cub3d *p_data)
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
-		rc = ray_cast_distance(p_data, radian, 0);
+		rc = ray_cast_distance(p_data, radian, 0, -1);
 		rvlen = vertical_len / rc;
 		pos[0] = i;
 		pos[1] = WIN_HEIGHT / 2 - rvlen / 2;

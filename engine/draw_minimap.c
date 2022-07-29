@@ -6,21 +6,21 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 05:48:23 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 18:01:32 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw_minimap.h"
 #include "ray_cast.h"
 
-static void	init_minimap(t_cub3d *p_data, t_minimap *p_map, \
+static void	init_minimap(t_cub3d *p_data, t_minimap_size *p_map, \
 													unsigned int tile_size)
 {
 	p_map->width = p_data->content_data.content_len * tile_size;
 	p_map->height = p_data->content_data.content_line * tile_size;
 }
 
-static void	draw_content(t_cub3d *p_data, t_minimap *map, \
+static void	draw_content(t_cub3d *p_data, t_minimap_size *map, \
 								unsigned int *bpos, unsigned int tile_size)
 {
 	unsigned int	pos[2];
@@ -62,8 +62,8 @@ static void	draw_player(t_player_data *player, t_img *img,
 	mlx_draw_square(img, pos, player_size, COLOR_PLAYER);
 }
 
-static void	draw_sight(t_cub3d *p_data, unsigned int *pos,
-		unsigned int tile_size)
+void	draw_sight(t_cub3d *p_data, unsigned int *pos, unsigned int tile_size,
+		double max_distance)
 {
 	unsigned int	ppos[2];
 	unsigned int	dpos[2];
@@ -75,7 +75,7 @@ static void	draw_sight(t_cub3d *p_data, unsigned int *pos,
 	radian = p_data->player.radian - (ONE_TO_RAD * WIN_FOV / 2);
 	while (radian < p_data->player.radian + (ONE_TO_RAD * WIN_FOV / 2))
 	{
-		ray_cast_distance(p_data, radian, rpos);
+		ray_cast_distance(p_data, radian, rpos, max_distance);
 		dpos[0] = rpos[0] * tile_size + pos[0];
 		dpos[1] = rpos[1] * tile_size + pos[1];
 		mlx_draw_line(&p_data->mlx.img, ppos, dpos, COLOR_RAY);
@@ -83,16 +83,17 @@ static void	draw_sight(t_cub3d *p_data, unsigned int *pos,
 	}
 }
 
-void	draw_minimap(t_cub3d *p_data, unsigned int x, unsigned int y,
-		unsigned int tile_size)
+void	draw_minimap(t_cub3d *p_data, t_minimap_setting *settings)
 {
-	t_minimap		minimap;
-	unsigned int	pos[2];
+	t_minimap_size	minimap_sz;
 
-	pos[0] = x;
-	pos[1] = y;
-	init_minimap(p_data, &minimap, tile_size);
-	draw_content(p_data, &minimap, pos, tile_size);
-	draw_player(&p_data->player, &p_data->mlx.img, pos, tile_size);
-	draw_sight(p_data, pos, tile_size);
+	if (settings->tile_size)
+	{
+		init_minimap(p_data, &minimap_sz, settings->tile_size);
+		draw_content(p_data, &minimap_sz, settings->pos,
+				settings->tile_size);
+		draw_player(&p_data->player, &p_data->mlx.img, settings->pos,
+				settings->tile_size);
+		draw_sight(p_data, settings->pos, settings->tile_size, 3);
+	}
 }
