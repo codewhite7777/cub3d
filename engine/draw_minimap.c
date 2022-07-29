@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 18:01:32 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 18:17:49 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ void	draw_minimap(t_cub3d *p_data, t_minimap_setting *settings)
 				settings->tile_size);
 		draw_player(&p_data->player, &p_data->mlx.img, settings->pos,
 				settings->tile_size);
-		draw_sight(p_data, settings->pos, settings->tile_size, 3);
+		draw_sight(p_data, settings->pos, settings->tile_size, -1);
 	}
 }

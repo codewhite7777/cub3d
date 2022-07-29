@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:06:41 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 16:26:00 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 22:26:55 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	mlx_pixel_to_image(t_img *img,
 	char			*dst;
 	unsigned int	bitmask;
 
-	if (x >= 0 && x < img->width && y >= 0 && y < img->height)
+	if (img->pos[0] <= x && x < img->width + img->pos[0]
+			&& img->pos[1] <= y && y < img->height + img->pos[1])
 	{
 		bitmask = 0xFFFFFFFF >> (32 - img->bits_per_pixel);
 		dst = img->addr

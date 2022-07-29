@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/07/29 06:16:00 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/29 22:25:56 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_img
 	int             bits_per_pixel;
 	int             line_length;
 	int             endian;
+	unsigned int	pos[2];
 }					t_img;
 
 typedef struct s_mlx
