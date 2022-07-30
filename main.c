@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/07/29 21:17:40 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/30 20:56:43 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,14 @@
 
 static int	loop_main(t_cub3d *p_data)
 {
-	t_minimap_setting	minimap_settings;
-
 	move_player(p_data, p_data->key_pressed);
 	draw_background(p_data);
-	draw_screen(p_data);
-	minimap_settings.pos[0] = 100;
-	minimap_settings.pos[1] = 10;
-	minimap_settings.size.width = 6;
-	minimap_settings.size.height = 4;
-	minimap_settings.tile_size = 20;
-	draw_minimap_2(p_data, &minimap_settings);
+	//draw_screen(p_data);
+#if MINIMAP_VER == 2
+	draw_minimap_2(p_data);
+#else
+	draw_minimap(p_data);
+#endif
 	mlx_put_image_to_window(p_data->mlx.mlx,
 		p_data->mlx.mlx_win, p_data->mlx.img.img, 0, 0);
 	return (0);

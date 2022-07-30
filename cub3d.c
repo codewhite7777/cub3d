@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:58:15 by alee              #+#    #+#             */
-/*   Updated: 2022/07/29 05:06:48 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/30 20:54:23 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "mlx_utils/mlx_initializer.h"
 #include "mlx_utils/xpm_loader.h"
 #include "utils/debug.h"
+#include "engine/draw_minimap.h"
 #include <stdlib.h>
 
 void	init_data(int argc, char* argv[], t_cub3d *p_data)
@@ -35,6 +36,7 @@ void	init_data(int argc, char* argv[], t_cub3d *p_data)
 #endif
 	content_checker(p_data);
 	mlx_start(p_data);
+	init_minimap(p_data, MINIMAP_VER);
 	return ;
 }
 

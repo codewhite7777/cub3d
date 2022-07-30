@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:56 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/28 19:06:12 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/30 20:11:19 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ void	mlx_draw_line(t_img *img, unsigned int *s_pos, unsigned int *d_pos, \
 		unsigned int color);
 void	mlx_draw_vertical(t_img *img, unsigned int *s_pos, unsigned int size, \
 		unsigned int color);
+void	mlx_draw_rectangle(t_img *img, unsigned int *s_pos,
+		unsigned int *e_pos, unsigned int color);
+void	mlx_put_image_to_image(t_img *d_img, t_img *s_img, unsigned int *pos);
 
 #endif

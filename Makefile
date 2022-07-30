@@ -6,12 +6,12 @@
 #    By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:38:45 by alee              #+#    #+#              #
-#    Updated: 2022/07/29 20:26:05 by dongkim          ###   ########.fr        #
+#    Updated: 2022/07/30 20:23:13 by dongkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 NAME = cub3D
@@ -34,7 +34,7 @@ PARSE_FILE = file_loader parse_data content_checker content_checker_utils parse_
 
 ENGINE_FILE = draw_minimap draw_minimap_2 move_player draw_screen ray_cast
 
-MLX_FILE = mlx_initializer xpm_loader event_hook mlx_draw
+MLX_FILE = mlx_initializer xpm_loader event_hook mlx_draw mlx_draw_2
 
 LIBFT_SRC = $(addprefix libft/,$(addsuffix .c, $(LIBFT_FILE)))
 GNL_SRC = $(addprefix get_next_line/,$(addsuffix .c, $(GNL_FILE)))
@@ -57,10 +57,10 @@ OBJ = $(addsuffix .o, $(FILE)) $(LIBFT_OBJ) $(GNL_OBJ) $(UTILS_OBJ) $(PARSE_OBJ)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@
+	arch -x86_64 $(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	arch -x86_64 $(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 .PHONY: clean
 clean:

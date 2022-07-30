@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/07/29 22:25:56 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/30 21:01:22 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 
 #define DEBUG 0
 
-# define PI         3.14159265359
-# define ONE_TO_RAD 0.01745329251
+# define PI				3.14159265359
+# define ONE_TO_RAD		0.01745329251
 
+# define WIN_WIDTH		960
+# define WIN_HEIGHT		540
 # define WIN_FOV		120
 # define WIN_DISTANCE	2
 
-typedef enum e_window
-{
-	WIN_WIDTH = 960,
-	WIN_HEIGHT = 540,
-}			t_window;
+# define MINIMAP_VER	2
+# define MINIMAP_WIDTH	10
+# define MINIMAP_HEIGHT	7
+# define MINIMAP_XPOS	100
+# define MINIMAP_YPOS	10
+# define MINIMAP_TILESZ	30
 
 typedef enum e_asset
 {
@@ -52,14 +55,13 @@ typedef enum e_parse
 
 typedef struct s_img
 {
-	void            *img;
-	char            *addr;
-	unsigned int    width;
-	unsigned int    height;
-	int             bits_per_pixel;
-	int             line_length;
-	int             endian;
-	unsigned int	pos[2];
+	void			*img;
+	char			*addr;
+	unsigned int	width;
+	unsigned int	height;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
 }					t_img;
 
 typedef struct s_mlx
@@ -104,6 +106,15 @@ typedef struct s_content_data
 	int		player_cnt;
 }				t_content_data;
 
+typedef struct s_minimap
+{
+	t_img			img;
+	unsigned int	width;
+	unsigned int	height;
+	unsigned int	pos[2];
+	unsigned int	tile_size;
+}				t_minimap;
+
 typedef struct s_cub3d
 {
 	t_mlx			mlx;
@@ -113,6 +124,7 @@ typedef struct s_cub3d
 	char			**file_ptr;
 	t_content_data	content_data;
 	t_player_data	player;
+	t_minimap		minimap;
 	t_xpm			xpm_data[ASSET_MAX];
 	char			key_pressed[256];
 }				t_cub3d;

@@ -6,21 +6,20 @@
 /*   By: dongkim <dongkim@student.42seoul.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:06:41 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 22:26:55 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/30 15:52:45 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_draw.h"
 #include "../utils/ft_utils_02.h"
 
-void	mlx_pixel_to_image(t_img *img,
-		unsigned int x, unsigned int y, unsigned int color)
+void	mlx_pixel_to_image(t_img *img, unsigned int x, unsigned int y,
+		unsigned int color)
 {
 	char			*dst;
 	unsigned int	bitmask;
 
-	if (img->pos[0] <= x && x < img->width + img->pos[0]
-			&& img->pos[1] <= y && y < img->height + img->pos[1])
+	if (x < img->width && y < img->height)
 	{
 		bitmask = 0xFFFFFFFF >> (32 - img->bits_per_pixel);
 		dst = img->addr

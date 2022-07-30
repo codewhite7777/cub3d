@@ -6,22 +6,15 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 18:17:49 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/30 20:53:16 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw_minimap.h"
 #include "ray_cast.h"
 
-static void	init_minimap(t_cub3d *p_data, t_minimap_size *p_map, \
-													unsigned int tile_size)
-{
-	p_map->width = p_data->content_data.content_len * tile_size;
-	p_map->height = p_data->content_data.content_line * tile_size;
-}
-
-static void	draw_content(t_cub3d *p_data, t_minimap_size *map, \
-								unsigned int *bpos, unsigned int tile_size)
+static void	draw_content(t_cub3d *p_data,
+	unsigned int *bpos, unsigned int tile_size)
 {
 	unsigned int	pos[2];
 	char			**content;
@@ -29,10 +22,10 @@ static void	draw_content(t_cub3d *p_data, t_minimap_size *map, \
 
 	content = p_data->content_data.content_ptr;
 	pos[1] = bpos[1];
-	while (pos[1] < map->height + bpos[1])
+	while (pos[1] < p_data->minimap.height + bpos[1])
 	{
 		pos[0] = bpos[0];
-		while (pos[0] < map->width + bpos[0])
+		while (pos[0] < p_data->minimap.width + bpos[0])
 		{
 			c = \
 		content[(pos[1] - bpos[1]) / tile_size][(pos[0] - bpos[0]) / tile_size];
@@ -62,8 +55,8 @@ static void	draw_player(t_player_data *player, t_img *img,
 	mlx_draw_square(img, pos, player_size, COLOR_PLAYER);
 }
 
-void	draw_sight(t_cub3d *p_data, unsigned int *pos, unsigned int tile_size,
-		double max_distance)
+static void	draw_sight(t_cub3d *p_data, unsigned int *pos,
+	unsigned int tile_size, double max_distance)
 {
 	unsigned int	ppos[2];
 	unsigned int	dpos[2];
@@ -83,17 +76,43 @@ void	draw_sight(t_cub3d *p_data, unsigned int *pos, unsigned int tile_size,
 	}
 }
 
-void	draw_minimap(t_cub3d *p_data, t_minimap_setting *settings)
+void    init_minimap(t_cub3d *p_data, int version)
 {
-	t_minimap_size	minimap_sz;
+    t_minimap   *minimap;
 
-	if (settings->tile_size)
+    minimap = &p_data->minimap;
+    minimap->width = MINIMAP_WIDTH;
+    minimap->height = MINIMAP_HEIGHT;
+    minimap->pos[0] = MINIMAP_XPOS;
+    minimap->pos[1] = MINIMAP_YPOS;
+    minimap->tile_size = MINIMAP_TILESZ;
+	if (version == 2)
 	{
-		init_minimap(p_data, &minimap_sz, settings->tile_size);
-		draw_content(p_data, &minimap_sz, settings->pos,
-				settings->tile_size);
-		draw_player(&p_data->player, &p_data->mlx.img, settings->pos,
-				settings->tile_size);
-		draw_sight(p_data, settings->pos, settings->tile_size, -1);
+		minimap->img.width = minimap->width * minimap->tile_size;
+		minimap->img.height = minimap->height * minimap->tile_size;
+		minimap->img.img = mlx_new_image(p_data->mlx.mlx,
+				minimap->img.width, minimap->img.height);
+		minimap->img.addr = mlx_get_data_addr(minimap->img.img,
+				&minimap->img.bits_per_pixel,
+				&minimap->img.line_length,
+				&minimap->img.endian);
+	}
+}
+
+void	draw_minimap(t_cub3d *p_data)
+{
+	t_minimap	*minimap;
+
+	minimap = &p_data->minimap;
+	if (minimap->tile_size)
+	{
+		minimap->width = p_data->content_data.content_len
+			* minimap->tile_size;
+		minimap->height = p_data->content_data.content_line
+			* minimap->tile_size;
+		draw_content(p_data, minimap->pos, minimap->tile_size);
+		draw_player(&p_data->player, &p_data->mlx.img, minimap->pos,
+				minimap->tile_size);
+		draw_sight(p_data, minimap->pos, minimap->tile_size, -1);
 	}
 }
