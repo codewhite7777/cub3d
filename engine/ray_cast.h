@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 05:05:05 by alee              #+#    #+#             */
-/*   Updated: 2022/07/30 05:09:12 by alee             ###   ########.fr       */
+/*   Updated: 2022/07/30 19:50:04 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 # include "../cub3d.h"
 
 void	ray_casting(t_cub3d *p_data);
+void	ray_init(t_cub3d *p_data);
 
 #endif
