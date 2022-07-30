@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/07/30 21:01:22 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/31 03:28:56 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define MINIMAP_XPOS	100
 # define MINIMAP_YPOS	10
 # define MINIMAP_TILESZ	30
+
+# define PLAYER_SPEED	10
 
 typedef enum e_asset
 {
