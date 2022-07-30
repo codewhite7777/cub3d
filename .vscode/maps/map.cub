@@ -1,0 +1,20 @@
+
+ SO     assets/bluestone.xpm
+    NO	    assets/colorstone.xpm
+ EA	assets/eagle.xpm
+WE	    assets/wood.xpm
+
+	F	0 ,0	,          0
+			C 255,255,255
+
+
+
+ 1111111
+12221001         1111111
+12221001    1111100020001
+12221001      11111110101
+12N21001             111
+11211001   11
+1111111   1221
+1010221   111
+1111111
