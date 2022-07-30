@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/07/30 20:56:43 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/30 21:48:30 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	loop_main(t_cub3d *p_data)
 {
 	move_player(p_data, p_data->key_pressed);
 	draw_background(p_data);
-	//draw_screen(p_data);
+	draw_screen(p_data);
 #if MINIMAP_VER == 2
 	draw_minimap_2(p_data);
 #else

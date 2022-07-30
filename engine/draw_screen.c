@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 23:52:35 by alee              #+#    #+#             */
-/*   Updated: 2022/07/29 18:00:05 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/07/31 02:47:43 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,25 @@ void	draw_background(t_cub3d *p_data)
 
 void	draw_screen(t_cub3d *p_data)
 {
-	int				i;
-	double			radian;
-	double			rad_per_fixel;
-	double			vertical_len;
-	double			rvlen;
-	unsigned int	pos[2];
-	double			rc;
+	double	radian;
+	double	rad_per_fixel;
+	double	vertical_len;
+	double	rvlen;
+	int		pos[2];
 
 	rad_per_fixel = ONE_TO_RAD * WIN_FOV / WIN_WIDTH;
 	radian = p_data->player.radian - (ONE_TO_RAD * WIN_FOV / 2);
 	vertical_len = WIN_WIDTH / tan(ONE_TO_RAD * WIN_FOV / 2);
-	i = 0;
-	while (i < WIN_WIDTH)
+	pos[0] = 0;
+	while (pos[0] < WIN_WIDTH)
 	{
-		rc = ray_cast_distance(p_data, radian, 0, -1);
-		rvlen = vertical_len / rc;
-		pos[0] = i;
+		rvlen = vertical_len / ray_cast_distance(p_data, radian, 0, -1);
+		if (rvlen < 0 || rvlen >= WIN_HEIGHT)
+			rvlen = WIN_HEIGHT;
 		pos[1] = WIN_HEIGHT / 2 - rvlen / 2;
-		mlx_draw_vertical(&p_data->mlx.img, pos, rvlen, 0x0000FFFF);
+		mlx_draw_vertical(&p_data->mlx.img,
+			(unsigned int *)pos, rvlen, 0x0000FFFF);
 		radian += rad_per_fixel;
-		i++;
+		pos[0]++;
 	}
 }
