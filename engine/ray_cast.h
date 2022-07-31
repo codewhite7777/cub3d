@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:49:38 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/29 17:50:01 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/01 02:28:08 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_raycast
 {
     double  x_len;
     double  y_len;
-    double  x_tan_len;
     double  x_asix_near_rdist;
     double  y_asix_near_rdist;
     double  x_one_move_rdist;
