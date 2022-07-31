@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/07/31 03:28:56 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/01 02:17:25 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 #define DEBUG 0
 
-# define PI				3.14159265359
-# define ONE_TO_RAD		0.01745329251
+# define PI				3.141592
+# define ONE_TO_RAD		0.017453
 
 # define WIN_WIDTH		960
 # define WIN_HEIGHT		540

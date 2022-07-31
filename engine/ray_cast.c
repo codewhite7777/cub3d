@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:51:26 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/31 02:43:54 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/01 02:24:36 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 static void	set_ray_dir(t_raycast *rc)
 {	
-	rc->dir = 0;
-	if (rc->x_dir == rc->y_dir)
-		rc->x_tan_len = tan(rc->radian) * (rc->x_len + rc->x_step);
-	else
-		rc->x_tan_len = tan(2 * PI - rc->radian) * (rc->x_len + rc->x_step);
-	if (rc->x_tan_len < 0)
-		rc->x_tan_len *= -1;
-	if (rc->y_len + rc->y_step < rc->x_tan_len)
+	if (rc->x_asix_near_rdist < rc->y_asix_near_rdist)
+	{
+		rc->x_asix_near_rdist += rc->y_one_move_rdist;
 		rc->dir = 1;
+		rc->y_step++;
+	}
+	else
+	{
+		rc->y_asix_near_rdist += rc->x_one_move_rdist;
+		rc->dir = 0;
+		rc->x_step++;
+	}
 }
 
 static void	init_rc(t_raycast *rc, t_player_data *player, double radian)
@@ -58,11 +61,9 @@ static void	set_rpos(t_player_data *player, t_raycast *rc, double *rpos,
 		double max_distance)
 {
 	if (rc->dir == 0)
-		rc->distance = rc->y_asix_near_rdist + (rc->x_one_move_rdist)
-			* (rc->x_step - 1);
+		rc->distance = rc->y_asix_near_rdist - rc->x_one_move_rdist;
 	else
-		rc->distance = rc->x_asix_near_rdist + (rc->y_one_move_rdist)
-			* (rc->y_step - 1);
+		rc->distance = rc->x_asix_near_rdist - rc->y_one_move_rdist;
 	if (max_distance >= 0 && rc->distance > max_distance)
 		rc->distance = max_distance;
 	if (rpos)
@@ -86,10 +87,6 @@ double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos,
 				[(int)(player->pos.x + (rc.x_step) * rc.x_dir)] != 1)
 	{
 		set_ray_dir(&rc);
-		if (rc.dir == 0)
-			rc.x_step++;
-		else
-			rc.y_step++;
 	}
 	set_rpos(player, &rc, rpos, max_distance);
 	return (rc.distance);

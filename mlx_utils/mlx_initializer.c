@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:31:18 by alee              #+#    #+#             */
-/*   Updated: 2022/07/25 04:23:07 by alee             ###   ########.fr       */
+/*   Updated: 2022/08/01 02:22:23 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	mlx_start(t_cub3d *p_data)
 void	mlx_finish(t_cub3d *p_data)
 {
 	mlx_destroy_image(p_data->mlx.mlx, p_data->mlx.img.img);
+	mlx_destroy_image(p_data->mlx.mlx, p_data->minimap.img.img);
 	mlx_destroy_window(p_data->mlx.mlx, p_data->mlx.mlx_win);
 	return ;
 }
