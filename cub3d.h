@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/01 02:17:25 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/01 03:40:50 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define WIN_FOV		120
 # define WIN_DISTANCE	2
 
-# define MINIMAP_VER	2
+# define MINIMAP_VER	1
 # define MINIMAP_WIDTH	10
 # define MINIMAP_HEIGHT	7
 # define MINIMAP_XPOS	100

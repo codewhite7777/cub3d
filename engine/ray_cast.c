@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:51:26 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/01 02:24:36 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/01 03:39:00 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,18 @@ static void	init_rc(t_raycast *rc, t_player_data *player, double radian)
 static void	set_rpos(t_player_data *player, t_raycast *rc, double *rpos,
 		double max_distance)
 {
+	double	radian;
+
 	if (rc->dir == 0)
 		rc->distance = rc->y_asix_near_rdist - rc->x_one_move_rdist;
 	else
 		rc->distance = rc->x_asix_near_rdist - rc->y_one_move_rdist;
+	radian = player->radian - rc->radian;
+	if (radian < 0)
+		radian += 2 * PI;
+	if (radian > 2 * PI)
+		radian -= 2 * PI;
+	rc->distance *= cos(radian);
 	if (max_distance >= 0 && rc->distance > max_distance)
 		rc->distance = max_distance;
 	if (rpos)

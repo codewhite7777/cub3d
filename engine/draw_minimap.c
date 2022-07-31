@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/30 20:53:16 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/01 03:44:13 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	draw_sight(t_cub3d *p_data, unsigned int *pos,
 	}
 }
 
-void    init_minimap(t_cub3d *p_data, int version)
+void    init_minimap(t_cub3d *p_data)
 {
     t_minimap   *minimap;
 
@@ -86,17 +86,14 @@ void    init_minimap(t_cub3d *p_data, int version)
     minimap->pos[0] = MINIMAP_XPOS;
     minimap->pos[1] = MINIMAP_YPOS;
     minimap->tile_size = MINIMAP_TILESZ;
-	if (version == 2)
-	{
-		minimap->img.width = minimap->width * minimap->tile_size;
-		minimap->img.height = minimap->height * minimap->tile_size;
-		minimap->img.img = mlx_new_image(p_data->mlx.mlx,
-				minimap->img.width, minimap->img.height);
-		minimap->img.addr = mlx_get_data_addr(minimap->img.img,
-				&minimap->img.bits_per_pixel,
-				&minimap->img.line_length,
-				&minimap->img.endian);
-	}
+	minimap->img.width = minimap->width * minimap->tile_size;
+	minimap->img.height = minimap->height * minimap->tile_size;
+	minimap->img.img = mlx_new_image(p_data->mlx.mlx,
+			minimap->img.width, minimap->img.height);
+	minimap->img.addr = mlx_get_data_addr(minimap->img.img,
+			&minimap->img.bits_per_pixel,
+			&minimap->img.line_length,
+			&minimap->img.endian);
 }
 
 void	draw_minimap(t_cub3d *p_data)

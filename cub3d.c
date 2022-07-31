@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:58:15 by alee              #+#    #+#             */
-/*   Updated: 2022/07/30 20:54:23 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/01 03:44:48 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_data(int argc, char* argv[], t_cub3d *p_data)
 #endif
 	content_checker(p_data);
 	mlx_start(p_data);
-	init_minimap(p_data, MINIMAP_VER);
+	init_minimap(p_data);
 	return ;
 }
 

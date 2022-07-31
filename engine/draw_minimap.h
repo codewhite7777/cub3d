@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:21:24 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/30 21:19:06 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/01 03:44:24 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_minimap_setting
 	unsigned int	tile_size;
 }				t_minimap_setting;
 
-void	init_minimap(t_cub3d *p_data, int version);
+void	init_minimap(t_cub3d *p_data);
 void	draw_minimap(t_cub3d *p_data);
 void	draw_minimap_2(t_cub3d *p_data);
 
