@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:22:05 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/31 03:28:39 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/02 04:14:21 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@ static void	move_player_calculator(t_cub3d *p_data,
 	tmp = player->pos.y + (y_cor * sin(radian)) * 0.001 * PLAYER_SPEED;
 	if (content->content_ptr[(unsigned int)tmp][(unsigned int)player->pos.x] != 1)
 		player->pos.y = tmp;
+	p_data->update = 1;
+}
+
+static void	player_angle_calculator(t_cub3d *p_data, int dir)
+{
+	p_data->player.radian += (ONE_TO_RAD * dir);
+	p_data->update = 1;
+	if (p_data->player.radian < 0)
+		p_data->player.radian += (2 * PI);
+	if (p_data->player.radian >= (2 * PI))
+		p_data->player.radian -= (2 * PI);
 }
 
 void	move_player(t_cub3d *p_data, char *key_pressed)
@@ -43,11 +54,7 @@ void	move_player(t_cub3d *p_data, char *key_pressed)
 	if (key_pressed[event_key_right])
 		move_player_calculator(p_data, -1, 1, (PI / 2) - player->radian);
 	if (key_pressed[event_key_arrow_left])
-		player->radian = (player->radian - ONE_TO_RAD);
+		player_angle_calculator(p_data, -1);
 	if (key_pressed[event_key_arrow_right])
-		player->radian = (player->radian + ONE_TO_RAD);
-	if (player->radian < 0)
-		player->radian += (2 * PI);
-	if (player->radian >= (2 * PI))
-		player->radian -= (2 * PI);
+		player_angle_calculator(p_data, 1);
 }

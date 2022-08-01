@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:51:26 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/01 03:39:00 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/02 04:18:03 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static void	set_rpos(t_player_data *player, t_raycast *rc, double *rpos,
 		radian += 2 * PI;
 	if (radian > 2 * PI)
 		radian -= 2 * PI;
-	rc->distance *= cos(radian);
 	if (max_distance >= 0 && rc->distance > max_distance)
 		rc->distance = max_distance;
 	if (rpos)
@@ -79,6 +78,7 @@ static void	set_rpos(t_player_data *player, t_raycast *rc, double *rpos,
 		rpos[0] = player->pos.x + cos(rc->radian) * rc->distance;
 		rpos[1] = player->pos.y + sin(rc->radian) * rc->distance;
 	}
+	rc->distance *= cos(radian);
 }
 
 double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos,
@@ -91,8 +91,8 @@ double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos,
 	player = &p_data->player;
 	content = p_data->content_data.content_ptr;
 	init_rc(&rc, player, radian);
-	while (content[(int)(player->pos.y + (rc.y_step) * rc.y_dir)] \
-				[(int)(player->pos.x + (rc.x_step) * rc.x_dir)] != 1)
+	while (content[((int)player->pos.y + (rc.y_step) * rc.y_dir)] \
+				[((int)player->pos.x + (rc.x_step) * rc.x_dir)] != 1)
 	{
 		set_ray_dir(&rc);
 	}

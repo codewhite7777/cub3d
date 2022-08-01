@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/01 03:40:50 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/02 04:37:11 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@
 
 # define WIN_WIDTH		960
 # define WIN_HEIGHT		540
-# define WIN_FOV		120
-# define WIN_DISTANCE	2
+# define WIN_FOV		60
 
-# define MINIMAP_VER	1
+# define MINIMAP_VER	2
 # define MINIMAP_WIDTH	10
 # define MINIMAP_HEIGHT	7
 # define MINIMAP_XPOS	100
@@ -129,6 +128,7 @@ typedef struct s_cub3d
 	t_minimap		minimap;
 	t_xpm			xpm_data[ASSET_MAX];
 	char			key_pressed[256];
+	int				update;
 }				t_cub3d;
 
 void	init_data(int argc, char* argv[], t_cub3d *p_data);
