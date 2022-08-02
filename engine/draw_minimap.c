@@ -6,15 +6,15 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/01 03:44:13 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/03 06:45:53 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw_minimap.h"
 #include "ray_cast.h"
 
-static void	draw_content(t_cub3d *p_data,
-	unsigned int *bpos, unsigned int tile_size)
+static void	draw_content(t_cub3d *p_data, \
+		unsigned int *bpos, unsigned int tile_size)
 {
 	unsigned int	pos[2];
 	char			**content;
@@ -41,7 +41,7 @@ static void	draw_content(t_cub3d *p_data,
 	}
 }
 
-static void	draw_player(t_player_data *player, t_img *img,
+static void	draw_player(t_player_data *player, t_img *img, \
 	unsigned int *bpos, unsigned int tile_size)
 {
 	unsigned int	pos[2];
@@ -55,7 +55,7 @@ static void	draw_player(t_player_data *player, t_img *img,
 	mlx_draw_square(img, pos, player_size, COLOR_PLAYER);
 }
 
-static void	draw_sight(t_cub3d *p_data, unsigned int *pos,
+static void	draw_sight(t_cub3d *p_data, unsigned int *pos, \
 	unsigned int tile_size, double max_distance)
 {
 	unsigned int	ppos[2];
@@ -76,16 +76,16 @@ static void	draw_sight(t_cub3d *p_data, unsigned int *pos,
 	}
 }
 
-void    init_minimap(t_cub3d *p_data)
+void	init_minimap(t_cub3d *p_data)
 {
-    t_minimap   *minimap;
+	t_minimap	*minimap;
 
-    minimap = &p_data->minimap;
-    minimap->width = MINIMAP_WIDTH;
-    minimap->height = MINIMAP_HEIGHT;
-    minimap->pos[0] = MINIMAP_XPOS;
-    minimap->pos[1] = MINIMAP_YPOS;
-    minimap->tile_size = MINIMAP_TILESZ;
+	minimap = &p_data->minimap;
+	minimap->width = MINIMAP_WIDTH;
+	minimap->height = MINIMAP_HEIGHT;
+	minimap->pos[0] = MINIMAP_XPOS;
+	minimap->pos[1] = MINIMAP_YPOS;
+	minimap->tile_size = MINIMAP_TILESZ;
 	minimap->img.width = minimap->width * minimap->tile_size;
 	minimap->img.height = minimap->height * minimap->tile_size;
 	minimap->img.img = mlx_new_image(p_data->mlx.mlx,
@@ -108,7 +108,7 @@ void	draw_minimap(t_cub3d *p_data)
 		minimap->height = p_data->content_data.content_line
 			* minimap->tile_size;
 		draw_content(p_data, minimap->pos, minimap->tile_size);
-		draw_player(&p_data->player, &p_data->mlx.img, minimap->pos,
+		draw_player(&p_data->player, &p_data->mlx.img, minimap->pos, \
 				minimap->tile_size);
 		draw_sight(p_data, minimap->pos, minimap->tile_size, -1);
 	}

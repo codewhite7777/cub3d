@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:58:15 by alee              #+#    #+#             */
-/*   Updated: 2022/08/02 04:15:06 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/03 06:48:59 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include "engine/draw_minimap.h"
 #include <stdlib.h>
 
-void	init_data(int argc, char* argv[], t_cub3d *p_data)
+void	init_data(int argc, char *argv[], t_cub3d *p_data)
 {
 	if (argc != 2)
 		ft_exit("Error\nInvalid arguments", 1);

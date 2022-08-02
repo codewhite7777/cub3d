@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:31:21 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/01 03:40:26 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/03 06:47:31 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	tile_selector(t_cub3d *p_data, int *pos, int *idx,
 	unsigned int	*upos;
 
 	upos = (unsigned int *)pos;
-	if (idx[1] < 0 || idx[0] < 0
-			|| idx[1] >= p_data->content_data.content_line
+	if (idx[1] < 0 || idx[0] < 0 \
+			|| idx[1] >= p_data->content_data.content_line \
 			|| idx[0] >= p_data->content_data.content_len)
 	{
 		mlx_draw_square(&p_data->minimap.img, upos,
@@ -63,7 +63,7 @@ static void	draw_content(t_cub3d *p_data)
 	}
 }
 
-static void draw_player(t_cub3d *p_data, unsigned int *ppos)
+static void	draw_player(t_cub3d *p_data, unsigned int *ppos)
 {
 	unsigned int	player_size;
 	t_minimap		*minimap;
@@ -102,7 +102,7 @@ void	draw_minimap_2(t_cub3d *p_data)
 {
 	unsigned int	ppos[2];
 
-	if (p_data->minimap.width && p_data->minimap.height
+	if (p_data->minimap.width && p_data->minimap.height \
 			&& p_data->minimap.tile_size)
 	{
 		draw_content(p_data);

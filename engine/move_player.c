@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:22:05 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/02 04:14:21 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/03 06:44:22 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ static void	move_player_calculator(t_cub3d *p_data,
 	player = &p_data->player;
 	content = &p_data->content_data;
 	tmp = player->pos.x + (x_cor * cos(radian)) * 0.001 * PLAYER_SPEED;
-	if (content->content_ptr[(unsigned int)player->pos.y][(unsigned int)tmp] != 1)
+	if (content->content_ptr[(unsigned int)player->pos.y][(unsigned int)tmp] \
+	!= 1)
 		player->pos.x = tmp;
 	tmp = player->pos.y + (y_cor * sin(radian)) * 0.001 * PLAYER_SPEED;
-	if (content->content_ptr[(unsigned int)tmp][(unsigned int)player->pos.x] != 1)
+	if (content->content_ptr[(unsigned int)tmp][(unsigned int)player->pos.x] \
+	!= 1)
 		player->pos.y = tmp;
 	p_data->update = 1;
 }

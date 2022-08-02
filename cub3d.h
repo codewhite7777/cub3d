@@ -6,14 +6,14 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/02 04:37:11 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/03 06:48:47 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#define DEBUG 0
+# define DEBUG 0
 
 # define PI				3.141592
 # define ONE_TO_RAD		0.017453
@@ -131,7 +131,7 @@ typedef struct s_cub3d
 	int				update;
 }				t_cub3d;
 
-void	init_data(int argc, char* argv[], t_cub3d *p_data);
+void	init_data(int argc, char *argv[], t_cub3d *p_data);
 void	close_data(t_cub3d *p_data);
 
 #endif

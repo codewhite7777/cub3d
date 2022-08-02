@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/08/02 03:22:25 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/03 06:48:32 by alee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ int	main(int argc, char *argv[])
 	init_data(argc, argv, &data);
 	mlx_loop_hook(data.mlx.mlx, loop_main, &data);
 	mlx_loop(data.mlx.mlx);
-	//system("leaks cub3D");
 	return (0);
 }
