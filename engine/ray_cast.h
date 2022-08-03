@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:49:38 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/03 06:43:37 by alee             ###   ########.fr       */
+/*   Updated: 2022/08/04 03:33:03 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ typedef struct s_raycast
 }				t_raycast;
 
 double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos, \
-		double max_distance);
+		int *wall_dir);
 
 #endif

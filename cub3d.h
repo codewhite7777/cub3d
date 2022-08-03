@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/03 06:48:47 by alee             ###   ########.fr       */
+/*   Updated: 2022/08/04 08:12:19 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,20 @@
 
 # define MINIMAP_VER	2
 # define MINIMAP_WIDTH	10
-# define MINIMAP_HEIGHT	7
+# define MINIMAP_HEIGHT	6
 # define MINIMAP_XPOS	100
 # define MINIMAP_YPOS	10
 # define MINIMAP_TILESZ	30
 
-# define PLAYER_SPEED	10
+# define PLAYER_SPEED	40
+# define ASSET_MAX		4
 
 typedef enum e_asset
 {
-	NO = 0,
-	SO = 1,
-	WE = 2,
-	EA = 3,
-	ASSET_MAX = 4,
+	WALL_NO = 0,
+	WALL_SO = 1,
+	WALL_WE = 2,
+	WALL_EA = 3,
 }			t_asset;
 
 typedef enum e_parse
@@ -71,13 +71,6 @@ typedef struct s_mlx
 	void		*mlx_win;
 	t_img		img;
 }				t_mlx;
-
-typedef struct s_xpm
-{
-	void	*img;
-	int		width;
-	int		height;
-}				t_xpm;
 
 typedef struct s_parse_data
 {
@@ -126,7 +119,7 @@ typedef struct s_cub3d
 	t_content_data	content_data;
 	t_player_data	player;
 	t_minimap		minimap;
-	t_xpm			xpm_data[ASSET_MAX];
+	t_img			xpm_data[ASSET_MAX];
 	char			key_pressed[256];
 	int				update;
 }				t_cub3d;

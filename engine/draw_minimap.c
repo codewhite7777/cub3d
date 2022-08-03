@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/03 06:45:53 by alee             ###   ########.fr       */
+/*   Updated: 2022/08/04 05:36:20 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	draw_player(t_player_data *player, t_img *img, \
 }
 
 static void	draw_sight(t_cub3d *p_data, unsigned int *pos, \
-	unsigned int tile_size, double max_distance)
+	unsigned int tile_size)
 {
 	unsigned int	ppos[2];
 	unsigned int	dpos[2];
@@ -68,7 +68,7 @@ static void	draw_sight(t_cub3d *p_data, unsigned int *pos, \
 	radian = p_data->player.radian - (ONE_TO_RAD * WIN_FOV / 2);
 	while (radian < p_data->player.radian + (ONE_TO_RAD * WIN_FOV / 2))
 	{
-		ray_cast_distance(p_data, radian, rpos, max_distance);
+		ray_cast_distance(p_data, radian, rpos, 0);
 		dpos[0] = rpos[0] * tile_size + pos[0];
 		dpos[1] = rpos[1] * tile_size + pos[1];
 		mlx_draw_line(&p_data->mlx.img, ppos, dpos, COLOR_RAY);
@@ -110,6 +110,6 @@ void	draw_minimap(t_cub3d *p_data)
 		draw_content(p_data, minimap->pos, minimap->tile_size);
 		draw_player(&p_data->player, &p_data->mlx.img, minimap->pos, \
 				minimap->tile_size);
-		draw_sight(p_data, minimap->pos, minimap->tile_size, -1);
+		draw_sight(p_data, minimap->pos, minimap->tile_size);
 	}
 }

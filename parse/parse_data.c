@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 00:07:33 by alee              #+#    #+#             */
-/*   Updated: 2022/07/25 04:20:34 by alee             ###   ########.fr       */
+/*   Updated: 2022/08/04 05:34:05 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int	parse_data(t_cub3d *p_data)
 t_parse	parse_line(char *line, t_cub3d *p_data)
 {
 	if (ft_strnstr(line, "NO", ft_strlen(line)))
-		return (parse_asset(line, NO, PARSE_NORTH, p_data));
+		return (parse_asset(line, WALL_NO, PARSE_NORTH, p_data));
 	else if (ft_strnstr(line, "SO", ft_strlen(line)))
-		return (parse_asset(line, SO, PARSE_SOUTH, p_data));
+		return (parse_asset(line, WALL_SO, PARSE_SOUTH, p_data));
 	else if (ft_strnstr(line, "WE", ft_strlen(line)))
-		return (parse_asset(line, WE, PARSE_WEST, p_data));
+		return (parse_asset(line, WALL_WE, PARSE_WEST, p_data));
 	else if (ft_strnstr(line, "EA", ft_strlen(line)))
-		return (parse_asset(line, EA, PARSE_EAST, p_data));
+		return (parse_asset(line, WALL_EA, PARSE_EAST, p_data));
 	else if (ft_strnstr(line, "F", ft_strlen(line)))
 		return (parse_rgb(line, "F", PARSE_FLOOR, p_data));
 	else if (ft_strnstr(line, "C", ft_strlen(line)))

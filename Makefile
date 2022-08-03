@@ -6,7 +6,7 @@
 #    By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:38:45 by alee              #+#    #+#              #
-#    Updated: 2022/07/31 03:00:48 by dongkim          ###   ########.fr        #
+#    Updated: 2022/08/04 07:36:16 by dongkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,10 @@ clean:
 .PHONY: fclean
 fclean: clean
 	$(RM) $(NAME)
+
+.PHONY: test
+test:
+	$(CC) -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx test.c -o a.out
 
 .PHONY: re
 re: fclean all
