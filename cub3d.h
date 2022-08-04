@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 01:13:38 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 05:57:41 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@
 # define MINIMAP_YPOS	10
 # define MINIMAP_TILESZ	30
 
-# define PLAYER_SPEED	40
+# define PLAYER_SPEED	20
+# define MOUSE_SPEED	5
 # define ASSET_MAX		4
 
 typedef enum e_asset

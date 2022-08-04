@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:21:17 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/27 19:35:11 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 05:37:56 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include <math.h>
 
 void	move_player(t_cub3d *p_data, char *key_pressed);
+void	move_mouse(t_cub3d *p_data);
 
 #endif

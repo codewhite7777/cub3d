@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:31:18 by alee              #+#    #+#             */
-/*   Updated: 2022/08/01 02:22:23 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 05:51:51 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	mlx_start(t_cub3d *p_data)
 	mlx_hook(p_data->mlx.mlx_win, event_window_destroy, 0, \
 							exit_event, (void *)p_data);
 	xpm_load(p_data);
-	return ;
 }
 
 void	mlx_finish(t_cub3d *p_data)

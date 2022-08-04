@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 01:36:25 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 05:33:51 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 static int	loop_main(t_cub3d *p_data)
 {
 	move_player(p_data, p_data->key_pressed);
+	move_mouse(p_data);
 	if (p_data->update)
 	{
 		draw_background(p_data);

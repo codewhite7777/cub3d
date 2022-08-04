@@ -6,13 +6,14 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:52:10 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 01:40:30 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 05:35:32 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "event_hook.h"
 #include <stdlib.h>
+#include <mlx.h>
 
 //debug
 #include <stdio.h>
