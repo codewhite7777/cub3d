@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/04 08:12:19 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 01:13:38 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_minimap
 	unsigned int	height;
 	unsigned int	pos[2];
 	unsigned int	tile_size;
+	int				sw;
 }				t_minimap;
 
 typedef struct s_cub3d

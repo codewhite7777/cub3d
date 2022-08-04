@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/04 05:36:20 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 01:16:46 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	init_minimap(t_cub3d *p_data)
 	t_minimap	*minimap;
 
 	minimap = &p_data->minimap;
+	minimap->sw = 1;
 	minimap->width = MINIMAP_WIDTH;
 	minimap->height = MINIMAP_HEIGHT;
 	minimap->pos[0] = MINIMAP_XPOS;

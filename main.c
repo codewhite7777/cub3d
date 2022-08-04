@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/08/04 23:21:03 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 01:36:25 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	loop_main(t_cub3d *p_data)
 	{
 		draw_background(p_data);
 		draw_screen(p_data);
-		draw_minimap_2(p_data);
+		if (p_data->minimap.sw)
+			draw_minimap_2(p_data);
 		mlx_put_image_to_window(p_data->mlx.mlx,
 			p_data->mlx.mlx_win, p_data->mlx.img.img, 0, 0);
 		p_data->update = 0;
