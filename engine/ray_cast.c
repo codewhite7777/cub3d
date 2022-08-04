@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:51:26 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/04 08:10:08 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/04 23:10:57 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,26 +76,26 @@ static void	set_rpos(t_player_data *player, t_raycast *rc, double *rpos)
 	rc->distance *= cos(rc->radian);
 }
 
-static void	set_wall_dir(t_raycast *rc, int *wall_dir)
+static void	set_wall_type(t_raycast *rc, int *wall_type)
 {
 	if (rc->dir == 1)
 	{
 		if (rc->y_dir == 1)
-			*wall_dir = WALL_NO;
+			*wall_type = WALL_NO;
 		else
-			*wall_dir = WALL_SO;
+			*wall_type = WALL_SO;
 	}
 	else
 	{
 		if (rc->x_dir == 1)
-			*wall_dir = WALL_WE;
+			*wall_type = WALL_WE;
 		else
-			*wall_dir = WALL_EA;
+			*wall_type = WALL_EA;
 	}
 }
 
 double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos,
-		int *wall_dir)
+		int *wall_type)
 {
 	t_raycast		rc;
 	char			**content;
@@ -110,7 +110,7 @@ double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos,
 		set_ray_dir(&rc);
 	}
 	set_rpos(player, &rc, rpos);
-	if (wall_dir)
-		set_wall_dir(&rc, wall_dir);
+	if (wall_type)
+		set_wall_type(&rc, wall_type);
 	return (rc.distance);
 }
