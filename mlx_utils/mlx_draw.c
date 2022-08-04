@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:06:41 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/30 15:52:45 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/04 23:50:42 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,4 @@ void	mlx_draw_line(t_img *img,
 		mlx_draw_line_sub(img, &dl, 1, color);
 	else
 		mlx_draw_line_sub(img, &dl, -1, color);
-}
-
-void	mlx_draw_vertical(t_img *img, unsigned int *s_pos, unsigned int size,
-		unsigned int color)
-{
-	unsigned int	y;
-
-	y = 0;
-	while (y < size)
-	{
-		mlx_pixel_to_image(img, s_pos[0], s_pos[1] + y, color);
-		y++;
-	}
 }

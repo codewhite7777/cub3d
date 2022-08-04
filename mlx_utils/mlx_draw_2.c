@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 15:54:31 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/30 20:26:40 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 00:16:50 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,45 @@ void	mlx_put_image_to_image(t_img *d_img, t_img *s_img,
 		}
 		y++;
 	}
+}
+
+void	mlx_draw_vertical(t_img *img, unsigned int *s_pos, unsigned int size,
+        unsigned int color)
+{
+	unsigned int	y;
+
+	y = 0;
+	while (y < size)
+	{
+		mlx_pixel_to_image(img, s_pos[0], s_pos[1] + y, color);
+		y++;
+	}
+}
+
+void	mlx_draw_horizon(t_img *img, unsigned int *s_pos, unsigned int size,
+		unsigned int color)
+{
+	unsigned int	x;
+
+	x = 0;
+	while (x < size)
+	{
+		mlx_pixel_to_image(img, s_pos[0] + x, s_pos[1], color);
+		x++;
+	}
+}
+
+void	mlx_draw_border(t_img *img,	unsigned int color)
+{
+	unsigned int	pos[2];
+
+	pos[0] = 0;
+	pos[1] = 0;
+	mlx_draw_horizon(img, pos, img->width, color);
+	mlx_draw_vertical(img, pos, img->height, color);
+	pos[1] = img->height - 1;
+	mlx_draw_horizon(img, pos, img->width, color);
+	pos[0] = img->width - 1;
+	pos[1] = 0;
+	mlx_draw_vertical(img, pos, img->height, color);
 }
