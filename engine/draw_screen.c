@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 23:52:35 by alee              #+#    #+#             */
-/*   Updated: 2022/08/04 23:19:56 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 17:36:18 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ static void	draw_texture_vertical(t_cub3d *p_data, int *pos,
 	t_img			*xpm;
 	unsigned int	i;
 	double			xpos;
+	int				idx;
 
+	idx = p_data->mlx.img_idx;
 	if (wall->wall_dir == WALL_SO)
 		xpos = rpos[0] - (int)rpos[0];
 	else if (wall->wall_dir == WALL_NO)
@@ -45,7 +47,8 @@ static void	draw_texture_vertical(t_cub3d *p_data, int *pos,
 	i = 0;
 	while (i < wall->vertical_len && i < WIN_HEIGHT)
 	{
-		mlx_pixel_to_image(&p_data->mlx.img, pos[0], (pos[1] >= 0) * pos[1] + i,
+		mlx_pixel_to_image(&p_data->mlx.img[idx], \
+			pos[0], (pos[1] >= 0) * pos[1] + i, \
 			get_color_in_texture(xpm, xpos, \
 			(double)(i + ((pos[1] < 0) * pos[1] * -1)) / wall->vertical_len));
 		i++;
@@ -56,14 +59,16 @@ void	draw_background(t_cub3d *p_data)
 {
 	int	i;
 	int	j;
+	int	idx;
 
+	idx = p_data->mlx.img_idx;
 	i = 0;
 	while (i < WIN_HEIGHT / 2)
 	{
 		j = 0;
 		while (j < WIN_WIDTH)
 		{
-			mlx_pixel_to_image(&p_data->mlx.img,
+			mlx_pixel_to_image(&p_data->mlx.img[idx],
 				j++, i, p_data->parse_data.c_color);
 		}
 		i++;
@@ -73,7 +78,7 @@ void	draw_background(t_cub3d *p_data)
 		j = 0;
 		while (j < WIN_WIDTH)
 		{
-			mlx_pixel_to_image(&p_data->mlx.img,
+			mlx_pixel_to_image(&p_data->mlx.img[idx],
 				j++, i, p_data->parse_data.f_color);
 		}
 		i++;

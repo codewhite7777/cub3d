@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 05:33:51 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 17:37:29 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ static int	loop_main(t_cub3d *p_data)
 		if (p_data->minimap.sw)
 			draw_minimap_2(p_data);
 		mlx_put_image_to_window(p_data->mlx.mlx,
-			p_data->mlx.mlx_win, p_data->mlx.img.img, 0, 0);
+			p_data->mlx.mlx_win,
+			p_data->mlx.img[p_data->mlx.img_idx].img, 0, 0);
 		p_data->update = 0;
+		p_data->mlx.img_idx = !p_data->mlx.img_idx;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 05:57:41 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 17:24:06 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
-	t_img		img;
+	t_img		img[2];
+	int			img_idx;
 }				t_mlx;
 
 typedef struct s_parse_data
