@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:41:27 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/05 19:15:08 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 05:59:42 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	set_content_data(t_cub3d *p_data)
 		line_len = ft_strlen(p_data->file_ptr[idx]);
 		if (p_data->content_data.content_len < line_len)
 			p_data->content_data.content_len = line_len;
-		if (ft_isin_line(p_data->file_ptr[idx], "\t\n\v\f\r NEWS01234")
+		if (ft_isin_line(p_data->file_ptr[idx], "\t\n\v\f\r NEWS012Dd")
 			!= line_len)
 			return (0);
 		p_data->content_data.player_cnt
@@ -104,7 +104,8 @@ static void	set_player(t_cub3d *p_data)
 		while (++j < p_data->content_data.content_len)
 		{
 			c = &p_data->content_data.content_ptr[i][j];
-			if (*c >= ('E' - 0x30))
+			if (*c == ('N' - 0x30) || *c == ('E' - 0x30)
+				|| *c == ('W' - 0x30) || *c == ('S' - 0x30))
 			{
 				p_data->player.pos.y = i + 0.5;
 				p_data->player.pos.x = j + 0.5;

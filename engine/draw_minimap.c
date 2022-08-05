@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/05 18:15:30 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 06:12:40 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ray_cast.h"
 
 static void	draw_content(t_cub3d *p_data, \
-		unsigned int *bpos, unsigned int tile_size)
+		unsigned int *bpos, unsigned int size)
 {
 	unsigned int	pos[2];
 	char			**content;
@@ -30,16 +30,16 @@ static void	draw_content(t_cub3d *p_data, \
 		while (pos[0] < p_data->minimap.width + bpos[0])
 		{
 			c = \
-		content[(pos[1] - bpos[1]) / tile_size][(pos[0] - bpos[0]) / tile_size];
+		content[(pos[1] - bpos[1]) / size][(pos[0] - bpos[0]) / size];
 			if (c == TILE_WALL)
-				mlx_draw_square(&p_data->mlx.img[idx], pos, tile_size, COLOR_WALL);
+				mlx_draw_square(&p_data->mlx.img[idx], pos, size, COLOR_WALL);
 			else if (c == TILE_FLOOR || c == TILE_SPRITE)
-				mlx_draw_square(&p_data->mlx.img[idx], pos, tile_size, COLOR_FLOOR);
+				mlx_draw_square(&p_data->mlx.img[idx], pos, size, COLOR_FLOOR);
 			else
-				mlx_draw_square(&p_data->mlx.img[idx], pos, tile_size, COLOR_NONE);
-			pos[0] += tile_size;
+				mlx_draw_square(&p_data->mlx.img[idx], pos, size, COLOR_NONE);
+			pos[0] += size;
 		}
-		pos[1] += tile_size;
+		pos[1] += size;
 	}
 }
 
@@ -62,7 +62,7 @@ static void	draw_sight(t_cub3d *p_data, unsigned int *pos, \
 {
 	unsigned int	ppos[2];
 	unsigned int	dpos[2];
-	double			rpos[2];
+	t_draw_wall		wall;
 	double			radian;
 	int				idx;
 
@@ -72,9 +72,9 @@ static void	draw_sight(t_cub3d *p_data, unsigned int *pos, \
 	radian = p_data->player.radian - (ONE_TO_RAD * WIN_FOV / 2);
 	while (radian < p_data->player.radian + (ONE_TO_RAD * WIN_FOV / 2))
 	{
-		ray_cast_distance(p_data, radian, rpos, 0);
-		dpos[0] = rpos[0] * tile_size + pos[0];
-		dpos[1] = rpos[1] * tile_size + pos[1];
+		ray_cast_distance(p_data, radian, &wall);
+		dpos[0] = wall.ray_wall_dpos[0] * tile_size + pos[0];
+		dpos[1] = wall.ray_wall_dpos[1] * tile_size + pos[1];
 		mlx_draw_line(&p_data->mlx.img[idx], ppos, dpos, COLOR_RAY);
 		radian += ONE_TO_RAD;
 	}
@@ -113,8 +113,8 @@ void	draw_minimap(t_cub3d *p_data)
 		minimap->height = p_data->content_data.content_line
 			* minimap->tile_size;
 		draw_content(p_data, minimap->pos, minimap->tile_size);
-		draw_player(&p_data->player, &p_data->mlx.img[p_data->mlx.img_idx], minimap->pos, \
-				minimap->tile_size);
+		draw_player(&p_data->player, &p_data->mlx.img[p_data->mlx.img_idx],
+			minimap->pos, minimap->tile_size);
 		draw_sight(p_data, minimap->pos, minimap->tile_size);
 	}
 }

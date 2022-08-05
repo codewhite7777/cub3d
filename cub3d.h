@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 19:40:32 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 06:00:59 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef enum e_tile
 	TILE_FLOOR = 0,
 	TILE_WALL = 1,
 	TILE_SPRITE = 2,
-	TILE_DOOR_C = 3,
-	TILE_DOOR_O = 4,
+	TILE_DOOR_C = 20,
+	TILE_DOOR_O = 52,
 }			t_tile;
 
 typedef enum e_asset

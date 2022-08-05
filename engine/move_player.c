@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:22:05 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/05 18:20:08 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 06:04:26 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static void	move_player_calculator(t_cub3d *p_data,
 	content = &p_data->content_data;
 	tmp = player->pos.x + (x_cor * cos(radian)) * 0.001 * PLAYER_SPEED;
 	tile = content->content_ptr[(unsigned int)player->pos.y][(unsigned int)tmp];
-	if (tile != TILE_WALL && tile != TILE_DOOR_C)
+	if (tile != TILE_WALL && !(tile >= TILE_DOOR_C && tile < TILE_DOOR_O))
 		player->pos.x = tmp;
 	tmp = player->pos.y + (y_cor * sin(radian)) * 0.001 * PLAYER_SPEED;
 	tile = content->content_ptr[(unsigned int)tmp][(unsigned int)player->pos.x];
-	if (tile != TILE_WALL && tile != TILE_DOOR_C)
+	if (tile != TILE_WALL && !(tile >= TILE_DOOR_C && tile < TILE_DOOR_O))
 		player->pos.y = tmp;
 	p_data->update = 1;
 }
@@ -65,15 +65,15 @@ void	move_player(t_cub3d *p_data, char *key_pressed)
 
 void	move_mouse(t_cub3d *p_data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	mlx_mouse_get_pos(p_data->mlx.mlx_win, &x, &y);
 	if (x != WIN_WIDTH / 2)
 	{
 		mlx_mouse_hide();
 		p_data->player.radian += ONE_TO_RAD
-			* ((double)(x - (WIN_WIDTH / 2)) * MOUSE_SPEED / 100);
+			* (((double)(x - (WIN_WIDTH / 2)) *MOUSE_SPEED) / 100);
 		while (p_data->player.radian < 0)
 			p_data->player.radian += (2 * PI);
 		while (p_data->player.radian >= (2 * PI))

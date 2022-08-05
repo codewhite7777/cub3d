@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:49:38 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/04 03:33:03 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 06:36:01 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,20 @@ typedef struct s_raycast
 	int		dir;
 	int		x_dir;
 	int		y_dir;
-	int		x_step;
-	int		y_step;
 	double	radian;
 }				t_raycast;
 
-double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos, \
-		int *wall_dir);
+typedef struct s_draw_wall
+{
+    int		wall_dir;
+    double	vertical_len;
+	double	ray_wall_dpos[2];
+	double	ray_door_dpos[2];
+	double	door_distance;
+	char	door_status;
+	int		door_type;
+}				t_draw_wall;
+
+double	ray_cast_distance(t_cub3d *p_data, double radian, t_draw_wall *wall);
 
 #endif

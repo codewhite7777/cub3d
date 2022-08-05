@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 23:52:35 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 19:36:00 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 06:45:04 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static unsigned int	get_color_in_texture(t_img *wall, double x, double y)
 }
 
 static void	draw_texture_vertical(t_cub3d *p_data, int *pos,
-		double *rpos, t_draw_wall *wall)
+		t_draw_wall *wall)
 {
 	t_img			*xpm;
 	unsigned int	i;
@@ -36,24 +36,23 @@ static void	draw_texture_vertical(t_cub3d *p_data, int *pos,
 
 	idx = p_data->mlx.img_idx;
 	if (wall->wall_dir == WALL_SO || wall->wall_dir == WALL_DOOR_X)
-		xpos = rpos[0] - (int)rpos[0];
+		xpos = wall->ray_wall_dpos[0] - (int)wall->ray_wall_dpos[0];
 	else if (wall->wall_dir == WALL_NO)
-		xpos = 1 - (rpos[0] - (int)rpos[0]);
+		xpos = 1 - (wall->ray_wall_dpos[0] - (int)wall->ray_wall_dpos[0]);
 	else if (wall->wall_dir == WALL_WE || wall->wall_dir == WALL_DOOR_Y)
-		xpos = rpos[1] - (int)rpos[1];
+		xpos = wall->ray_wall_dpos[1] - (int)wall->ray_wall_dpos[1];
 	else if (wall->wall_dir == WALL_EA)
-		xpos = 1 - (rpos[1] - (int)rpos[1]);
+		xpos = 1 - (wall->ray_wall_dpos[1] - (int)wall->ray_wall_dpos[1]);
 	if (wall->wall_dir == WALL_DOOR_X || wall->wall_dir == WALL_DOOR_Y)
 		wall->wall_dir = WALL_DOOR;
 	xpm = &p_data->xpm_data[wall->wall_dir];
-	i = 0;
-	while (i < wall->vertical_len && i < WIN_HEIGHT)
+	i = -1;
+	while (++i < wall->vertical_len && i < WIN_HEIGHT)
 	{
 		mlx_pixel_to_image(&p_data->mlx.img[idx], \
 			pos[0], (pos[1] >= 0) * pos[1] + i, \
 			get_color_in_texture(xpm, xpos, \
 			(double)(i + ((pos[1] < 0) * pos[1] * -1)) / wall->vertical_len));
-		i++;
 	}
 }
 
@@ -69,20 +68,16 @@ void	draw_background(t_cub3d *p_data)
 	{
 		j = 0;
 		while (j < WIN_WIDTH)
-		{
-			mlx_pixel_to_image(&p_data->mlx.img[idx],
+			mlx_pixel_to_image(&p_data->mlx.img[idx], \
 				j++, i, p_data->parse_data.c_color);
-		}
 		i++;
 	}
 	while (i < WIN_HEIGHT)
 	{
 		j = 0;
 		while (j < WIN_WIDTH)
-		{
-			mlx_pixel_to_image(&p_data->mlx.img[idx],
+			mlx_pixel_to_image(&p_data->mlx.img[idx], \
 				j++, i, p_data->parse_data.f_color);
-		}
 		i++;
 	}
 }
@@ -93,7 +88,6 @@ void	draw_screen(t_cub3d *p_data)
 	t_draw_wall		wall;
 	double			unit_len;
 	int				screen_pos[2];
-	double			ray_dpos[2];
 
 	rad.rad_per_pixel = PI / 180 * WIN_FOV / WIN_WIDTH;
 	rad.radian = p_data->player.radian - (PI / 180 * (WIN_FOV / 2));
@@ -102,9 +96,11 @@ void	draw_screen(t_cub3d *p_data)
 	while (screen_pos[0] < WIN_WIDTH)
 	{
 		wall.vertical_len = unit_len
-			/ ray_cast_distance(p_data, rad.radian, ray_dpos, &wall.wall_dir);
+			/ ray_cast_distance(p_data, rad.radian, &wall);
 		screen_pos[1] = WIN_HEIGHT / 2 - wall.vertical_len / 2;
-		draw_texture_vertical(p_data, screen_pos, ray_dpos, &wall);
+		draw_texture_vertical(p_data, screen_pos, &wall);
+	/*	if (wall.door_status > TILE_DOOR_C)
+			draw_texture_vertical();*/
 		rad.radian += rad.rad_per_pixel;
 		screen_pos[0]++;
 	}

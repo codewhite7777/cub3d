@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:51:26 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/05 19:30:16 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 06:45:20 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ static void	set_ray_dir(t_raycast *rc, int *map_pos)
 	{
 		rc->x_asix_near_rdist += rc->y_one_move_rdist;
 		rc->dir = 1;
-		rc->y_step++;
 		map_pos[1] += rc->y_dir;
 	}
 	else
 	{
 		rc->y_asix_near_rdist += rc->x_one_move_rdist;
 		rc->dir = 0;
-		rc->x_step++;
 		map_pos[0] += rc->x_dir;
 	}
 }
@@ -39,8 +37,6 @@ static void	init_rc(t_raycast *rc, t_player_data *player, double radian)
 		rc->radian -= PI * 2;
 	rc->x_len = player->pos.x - (int)player->pos.x;
 	rc->y_len = player->pos.y - (int)player->pos.y;
-	rc->x_step = 0;
-	rc->y_step = 0;
 	rc->x_dir = -1;
 	rc->y_dir = -1;
 	if (PI / 2 > rc->radian || rc->radian > (PI / 2) * 3)
@@ -100,8 +96,36 @@ static void	set_wall_type(t_raycast *rc, int *wall_type, int is_door)
 	}
 }
 
-double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos,
-		int *wall_type)
+static void set_door(t_draw_wall *wall, t_player_data *player,
+		t_raycast *rc, char door_status)
+{
+	double	radian;
+
+	radian = rc->radian;
+	wall->door_status = door_status;
+	if (rc->dir == 0)
+	{
+		wall->door_distance = rc->y_asix_near_rdist - rc->x_one_move_rdist;
+		wall->door_type = WALL_DOOR_Y;
+	}
+	else
+	{
+		wall->door_distance = rc->x_asix_near_rdist - rc->y_one_move_rdist;
+		wall->door_type = WALL_DOOR_X;
+	}
+	wall->ray_door_dpos[0]
+		= player->pos.x + cos(radian) * wall->door_distance;
+	wall->ray_door_dpos[1]
+		= player->pos.y + sin(radian) * wall->door_distance;
+	radian = player->radian - radian;
+	if (radian < 0)
+		radian += 2 * PI;
+	if (radian > 2 * PI)
+		radian -= 2 * PI;
+	wall->door_distance *= cos(radian);
+}
+
+double	ray_cast_distance(t_cub3d *p_data, double radian, t_draw_wall *wall)
 {
 	t_raycast		rc;
 	char			**content;
@@ -113,14 +137,18 @@ double	ray_cast_distance(t_cub3d *p_data, double radian, double *rpos,
 	init_rc(&rc, player, radian);
 	map_pos[0] = (int)player->pos.x;
 	map_pos[1] = (int)player->pos.y;
+	wall->door_status = -1;
 	while (content[map_pos[1]][map_pos[0]] != TILE_WALL
 			&& content[map_pos[1]][map_pos[0]] != TILE_DOOR_C)
 	{
 		set_ray_dir(&rc, map_pos);
+		if (wall->door_status == -1
+			&& content[map_pos[1]][map_pos[0]] > TILE_DOOR_C
+			&& content[map_pos[1]][map_pos[0]] < TILE_DOOR_O)
+			set_door(wall, player, &rc, content[map_pos[1]][map_pos[0]]);
 	}
-	set_rpos(player, &rc, rpos);
-	if (wall_type)
-		set_wall_type(&rc, wall_type, \
-			content[map_pos[1]][map_pos[0]] == TILE_DOOR_C);
+	set_rpos(player, &rc, wall->ray_wall_dpos);
+	set_wall_type(&rc, &wall->wall_dir,
+		content[map_pos[1]][map_pos[0]] == TILE_DOOR_C);
 	return (rc.distance);
 }
