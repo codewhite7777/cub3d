@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:31:21 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/05 17:34:39 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 19:22:55 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ static void	tile_selector(t_cub3d *p_data, int *pos, int *idx,
 	else
 	{
 		c = p_data->content_data.content_ptr[idx[1]][idx[0]];
-		if (c == 1)
+		if (c == TILE_WALL)
 			mlx_draw_square(&p_data->minimap.img, upos, tile_size, COLOR_WALL);
-		else if (c == 0 || c == 2)
+		else if (c == TILE_FLOOR || c == TILE_SPRITE)
 			mlx_draw_square(&p_data->minimap.img, upos, tile_size, COLOR_FLOOR);
+		else if (c == TILE_DOOR_C)
+			mlx_draw_square(&p_data->minimap.img, upos, tile_size, COLOR_DOOR);
 		else
 			mlx_draw_square(&p_data->minimap.img, upos, tile_size, COLOR_NONE);
 	}

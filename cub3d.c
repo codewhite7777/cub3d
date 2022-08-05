@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:58:15 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 17:24:24 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 19:32:07 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "utils/debug.h"
 #include "engine/draw_minimap.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void	init_data(int argc, char *argv[], t_cub3d *p_data)
 {
@@ -31,6 +32,12 @@ void	init_data(int argc, char *argv[], t_cub3d *p_data)
 	file_info(argv[1], p_data);
 	file_alloc(argv[1], p_data);
 	parse_data(p_data);
+	if (ASSET_MAX > 4)
+	{
+		p_data->parse_data.asset_file[WALL_DOOR] = ft_strdup(XPM_DOOR_PATH);
+		if (p_data->parse_data.asset_file[WALL_DOOR] == 0)
+			ft_exit("Error\nMemory allocation fail(WALL_DOOR)", 1);
+	}
 #if (DEBUG == 1)
 	debug_parse_data(p_data);
 #endif

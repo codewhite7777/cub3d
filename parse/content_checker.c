@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:41:27 by dongkim           #+#    #+#             */
-/*   Updated: 2022/07/25 00:12:43 by alee             ###   ########.fr       */
+/*   Updated: 2022/08/05 19:15:08 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	set_content_data(t_cub3d *p_data)
 		line_len = ft_strlen(p_data->file_ptr[idx]);
 		if (p_data->content_data.content_len < line_len)
 			p_data->content_data.content_len = line_len;
-		if (ft_isin_line(p_data->file_ptr[idx], "\t\n\v\f\r NEWS012")
+		if (ft_isin_line(p_data->file_ptr[idx], "\t\n\v\f\r NEWS01234")
 			!= line_len)
 			return (0);
 		p_data->content_data.player_cnt

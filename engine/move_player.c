@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:22:05 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/05 05:55:54 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 18:20:08 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ static void	move_player_calculator(t_cub3d *p_data,
 	double			tmp;
 	t_player_data	*player;
 	t_content_data	*content;
+	char			tile;
 
 	player = &p_data->player;
 	content = &p_data->content_data;
 	tmp = player->pos.x + (x_cor * cos(radian)) * 0.001 * PLAYER_SPEED;
-	if (content->content_ptr[(unsigned int)player->pos.y][(unsigned int)tmp] \
-	!= 1)
+	tile = content->content_ptr[(unsigned int)player->pos.y][(unsigned int)tmp];
+	if (tile != TILE_WALL && tile != TILE_DOOR_C)
 		player->pos.x = tmp;
 	tmp = player->pos.y + (y_cor * sin(radian)) * 0.001 * PLAYER_SPEED;
-	if (content->content_ptr[(unsigned int)tmp][(unsigned int)player->pos.x] \
-	!= 1)
+	tile = content->content_ptr[(unsigned int)tmp][(unsigned int)player->pos.x];
+	if (tile != TILE_WALL && tile != TILE_DOOR_C)
 		player->pos.y = tmp;
 	p_data->update = 1;
 }
@@ -77,8 +78,7 @@ void	move_mouse(t_cub3d *p_data)
 			p_data->player.radian += (2 * PI);
 		while (p_data->player.radian >= (2 * PI))
 			p_data->player.radian -= (2 * PI);
-		mlx_mouse_move(p_data->mlx.mlx_win, WIN_WIDTH / 2,
-				254 - WIN_HEIGHT / 2);
+		mlx_mouse_move(p_data->mlx.mlx_win, WIN_WIDTH / 2, 0);
 		mlx_mouse_get_pos(p_data->mlx.mlx_win, &x, &y);
 		p_data->update = 1;
 	}

@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:21:24 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/05 00:05:58 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 19:21:29 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define COLOR_BORDER	0x0000FFFF
 # define COLOR_WALL		0x00000000
 # define COLOR_FLOOR	0x00FFFFFF
+# define COLOR_DOOR		0x00FF00FF
 # define COLOR_NONE		0x00AAAAAA
 
 typedef struct s_minimap_setting

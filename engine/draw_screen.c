@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 23:52:35 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 17:36:18 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 19:36:00 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,16 @@ static void	draw_texture_vertical(t_cub3d *p_data, int *pos,
 	int				idx;
 
 	idx = p_data->mlx.img_idx;
-	if (wall->wall_dir == WALL_SO)
+	if (wall->wall_dir == WALL_SO || wall->wall_dir == WALL_DOOR_X)
 		xpos = rpos[0] - (int)rpos[0];
 	else if (wall->wall_dir == WALL_NO)
 		xpos = 1 - (rpos[0] - (int)rpos[0]);
-	else if (wall->wall_dir == WALL_WE)
+	else if (wall->wall_dir == WALL_WE || wall->wall_dir == WALL_DOOR_Y)
 		xpos = rpos[1] - (int)rpos[1];
 	else if (wall->wall_dir == WALL_EA)
 		xpos = 1 - (rpos[1] - (int)rpos[1]);
+	if (wall->wall_dir == WALL_DOOR_X || wall->wall_dir == WALL_DOOR_Y)
+		wall->wall_dir = WALL_DOOR;
 	xpm = &p_data->xpm_data[wall->wall_dir];
 	i = 0;
 	while (i < wall->vertical_len && i < WIN_HEIGHT)

@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 17:24:06 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 19:40:32 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,18 @@
 
 # define PLAYER_SPEED	20
 # define MOUSE_SPEED	5
-# define ASSET_MAX		4
+# define ASSET_MAX		5
+
+# define XPM_DOOR_PATH	"assets/purplestone.xpm"
+
+typedef enum e_tile
+{
+	TILE_FLOOR = 0,
+	TILE_WALL = 1,
+	TILE_SPRITE = 2,
+	TILE_DOOR_C = 3,
+	TILE_DOOR_O = 4,
+}			t_tile;
 
 typedef enum e_asset
 {
@@ -39,6 +50,10 @@ typedef enum e_asset
 	WALL_SO = 1,
 	WALL_WE = 2,
 	WALL_EA = 3,
+	WALL_DOOR = 4,
+	ASSET_SPRITE = 5,
+	WALL_DOOR_X = 99,
+	WALL_DOOR_Y = 100,
 }			t_asset;
 
 typedef enum e_parse

@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:48 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/05 17:34:05 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/05 18:15:30 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	draw_content(t_cub3d *p_data, \
 		{
 			c = \
 		content[(pos[1] - bpos[1]) / tile_size][(pos[0] - bpos[0]) / tile_size];
-			if (c == 1)
+			if (c == TILE_WALL)
 				mlx_draw_square(&p_data->mlx.img[idx], pos, tile_size, COLOR_WALL);
-			else if (c == 0 || c == 2)
+			else if (c == TILE_FLOOR || c == TILE_SPRITE)
 				mlx_draw_square(&p_data->mlx.img[idx], pos, tile_size, COLOR_FLOOR);
 			else
 				mlx_draw_square(&p_data->mlx.img[idx], pos, tile_size, COLOR_NONE);
