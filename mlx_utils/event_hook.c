@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:52:10 by alee              #+#    #+#             */
-/*   Updated: 2022/08/06 06:58:33 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 07:39:00 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,19 @@
 
 int	key_event(int keycode, t_cub3d *p_data)
 {
-	if (keycode == event_key_up || keycode == event_key_down
+	if ((keycode == event_key_up || keycode == event_key_down
 		|| keycode == event_key_left || keycode == event_key_right
 		|| keycode == event_key_arrow_left || keycode == event_key_arrow_right
-		|| keycode == event_key_arrow_up || keycode == event_key_arrow_down)
-		p_data->key_pressed[(unsigned char)keycode] = 1;
-	else if (!p_data->key_pressed[event_key_tab] && keycode == event_key_tab)
+		|| keycode == event_key_arrow_up || keycode == event_key_arrow_down
+		|| keycode == event_key_tab || keycode == event_key_space)
+		&& p_data->key_pressed[(unsigned char)keycode] == 0)
 	{
-		p_data->key_pressed[event_key_tab] = 1;
-		p_data->minimap.sw = !p_data->minimap.sw;
+		p_data->key_pressed[(unsigned char)keycode] = 1;
 		p_data->update = 1;
+		if (keycode == event_key_tab)
+			p_data->minimap.sw = !p_data->minimap.sw;
+		else if (keycode == event_key_space)
+			;
 	}
 	else if (keycode == event_key_esc)
 	{
