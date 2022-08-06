@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/06 06:00:59 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 18:47:04 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,12 @@ typedef struct s_minimap
 	int				sw;
 }				t_minimap;
 
+typedef struct s_op_door
+{
+	int	door_status;
+	int	door_pos[2];
+}				t_op_door;
+
 typedef struct s_cub3d
 {
 	t_mlx			mlx;
@@ -139,6 +145,8 @@ typedef struct s_cub3d
 	t_minimap		minimap;
 	t_img			xpm_data[ASSET_MAX];
 	char			key_pressed[256];
+	t_op_door		op_door;
+	unsigned int	frame;
 	int				update;
 }				t_cub3d;
 

@@ -6,11 +6,12 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:22:05 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/06 06:04:26 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 20:27:00 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "move_player.h"
+#include "engine_utils.h"
 #include <mlx.h>
 
 static void	move_player_calculator(t_cub3d *p_data,
@@ -36,12 +37,9 @@ static void	move_player_calculator(t_cub3d *p_data,
 
 static void	player_angle_calculator(t_cub3d *p_data, int dir)
 {
-	p_data->player.radian += (ONE_TO_RAD * dir);
+	p_data->player.radian
+		= radian_correction(p_data->player.radian + (ONE_TO_RAD * dir));
 	p_data->update = 1;
-	if (p_data->player.radian < 0)
-		p_data->player.radian += (2 * PI);
-	if (p_data->player.radian >= (2 * PI))
-		p_data->player.radian -= (2 * PI);
 }
 
 void	move_player(t_cub3d *p_data, char *key_pressed)
@@ -72,12 +70,9 @@ void	move_mouse(t_cub3d *p_data)
 	if (x != WIN_WIDTH / 2)
 	{
 		mlx_mouse_hide();
-		p_data->player.radian += ONE_TO_RAD
-			* (((double)(x - (WIN_WIDTH / 2)) *MOUSE_SPEED) / 100);
-		while (p_data->player.radian < 0)
-			p_data->player.radian += (2 * PI);
-		while (p_data->player.radian >= (2 * PI))
-			p_data->player.radian -= (2 * PI);
+		p_data->player.radian
+			= radian_correction(p_data->player.radian + ONE_TO_RAD \
+			* (((double)(x - (WIN_WIDTH / 2)) *MOUSE_SPEED) / 100));
 		mlx_mouse_move(p_data->mlx.mlx_win, WIN_WIDTH / 2, 0);
 		mlx_mouse_get_pos(p_data->mlx.mlx_win, &x, &y);
 		p_data->update = 1;

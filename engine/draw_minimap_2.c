@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 17:31:21 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/06 05:40:23 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 20:27:19 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ static void	tile_selector(t_cub3d *p_data, int *pos, int *idx,
 	if (idx[1] < 0 || idx[0] < 0 \
 			|| idx[1] >= p_data->content_data.content_line \
 			|| idx[0] >= p_data->content_data.content_len)
-	{
-		mlx_draw_square(&p_data->minimap.img, upos,
-			tile_size, COLOR_NONE);
-	}
+		mlx_draw_square(&p_data->minimap.img, upos, tile_size, COLOR_NONE);
 	else
 	{
 		c = p_data->content_data.content_ptr[idx[1]][idx[0]];
@@ -34,8 +31,12 @@ static void	tile_selector(t_cub3d *p_data, int *pos, int *idx,
 			mlx_draw_square(&p_data->minimap.img, upos, tile_size, COLOR_WALL);
 		else if (c == TILE_FLOOR || c == TILE_SPRITE)
 			mlx_draw_square(&p_data->minimap.img, upos, tile_size, COLOR_FLOOR);
-		else if (c == TILE_DOOR_C)
-			mlx_draw_square(&p_data->minimap.img, upos, tile_size, COLOR_DOOR);
+		else if (c >= TILE_DOOR_C && c < TILE_DOOR_O)
+			mlx_draw_square(&p_data->minimap.img,
+				upos, tile_size, COLOR_DOOR_C);
+		else if (c == TILE_DOOR_O)
+			mlx_draw_square(&p_data->minimap.img,
+				upos, tile_size, COLOR_DOOR_O);
 		else
 			mlx_draw_square(&p_data->minimap.img, upos, tile_size, COLOR_NONE);
 	}

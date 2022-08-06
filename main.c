@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/08/06 06:54:57 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 18:51:54 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@
 #include "engine/draw_minimap.h"
 #include "engine/move_player.h"
 #include "engine/draw_screen.h"
+#include "engine/door_operator.h"
 
 static int	loop_main(t_cub3d *p_data)
 {
+	p_data->frame++;
 	move_player(p_data, p_data->key_pressed);
 	move_mouse(p_data);
+	if (p_data->op_door.door_status != 0 && p_data->frame % 20 == 0)
+		door_operator(p_data);
 	if (p_data->update)
 	{
 		draw_background(p_data);

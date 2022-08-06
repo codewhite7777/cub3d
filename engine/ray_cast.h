@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:49:38 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/06 06:36:01 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 20:28:56 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ typedef struct s_raycast
 
 typedef struct s_draw_wall
 {
-    int		wall_dir;
-    double	vertical_len;
+	int		wall_dir;
+	double	vertical_len;
 	double	ray_wall_dpos[2];
 	double	ray_door_dpos[2];
+	double	door_vertical_len;
+	int		door_pos[2];
 	double	door_distance;
 	char	door_status;
-	int		door_type;
+	int		door_dir;
 }				t_draw_wall;
 
 double	ray_cast_distance(t_cub3d *p_data, double radian, t_draw_wall *wall);

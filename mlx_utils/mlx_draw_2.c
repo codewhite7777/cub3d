@@ -6,7 +6,7 @@
 /*   By: dongkim <dongkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 15:54:31 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/05 00:16:50 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 20:28:28 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	mlx_put_image_to_image(t_img *d_img, t_img *s_img,
 }
 
 void	mlx_draw_vertical(t_img *img, unsigned int *s_pos, unsigned int size,
-        unsigned int color)
+		unsigned int color)
 {
 	unsigned int	y;
 

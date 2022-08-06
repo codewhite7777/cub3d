@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 23:52:35 by alee              #+#    #+#             */
-/*   Updated: 2022/08/06 06:45:04 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 19:59:50 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,34 @@ static void	draw_texture_vertical(t_cub3d *p_data, int *pos,
 	}
 }
 
+static void	draw_door_vertical(t_cub3d *p_data, int *pos,
+		t_draw_wall *wall, double unit_len)
+{
+	t_img			*xpm;
+	unsigned int	i;
+	double			xpos;
+	double			vertical_len;
+	double			cut_len;
+
+	vertical_len = unit_len / wall->door_distance;
+	cut_len = (vertical_len / 32) * (wall->door_status - TILE_DOOR_C);
+	pos[1] = WIN_HEIGHT / 2 - vertical_len / 2 + cut_len;
+	if (wall->door_dir == WALL_DOOR_X)
+		xpos = wall->ray_door_dpos[0] - (int)wall->ray_door_dpos[0];
+	else if (wall->door_dir == WALL_DOOR_Y)
+		xpos = wall->ray_door_dpos[1] - (int)wall->ray_door_dpos[1];
+	wall->door_dir = WALL_DOOR;
+	xpm = &p_data->xpm_data[wall->door_dir];
+	i = -1;
+	while (++i < vertical_len - cut_len && i < WIN_HEIGHT)
+	{
+		mlx_pixel_to_image(&p_data->mlx.img[p_data->mlx.img_idx], \
+			pos[0], (pos[1] >= 0) * pos[1] + i, \
+			get_color_in_texture(xpm, xpos, \
+			(double)(i + ((pos[1] < 0) * pos[1] * -1)) / vertical_len));
+	}
+}
+
 void	draw_background(t_cub3d *p_data)
 {
 	int	i;
@@ -99,8 +127,9 @@ void	draw_screen(t_cub3d *p_data)
 			/ ray_cast_distance(p_data, rad.radian, &wall);
 		screen_pos[1] = WIN_HEIGHT / 2 - wall.vertical_len / 2;
 		draw_texture_vertical(p_data, screen_pos, &wall);
-	/*	if (wall.door_status > TILE_DOOR_C)
-			draw_texture_vertical();*/
+		if (wall.door_status > TILE_DOOR_C
+			&& wall.door_status < TILE_DOOR_O)
+			draw_door_vertical(p_data, screen_pos, &wall, unit_len);
 		rad.radian += rad.rad_per_pixel;
 		screen_pos[0]++;
 	}

@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:58:15 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 19:32:07 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/06 18:47:52 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	init_data(int argc, char *argv[], t_cub3d *p_data)
 	mlx_start(p_data);
 	init_minimap(p_data);
 	p_data->update = 1;
+	p_data->frame = 0;
+	p_data->op_door.door_status = 0;
 	p_data->mlx.img_idx = 0;
 	return ;
 }
