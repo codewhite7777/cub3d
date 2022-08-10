@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:41:27 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/06 05:59:42 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 16:47:51 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,6 @@ static void	content_close_check(t_cub3d *p_data)
 		}
 		i++;
 	}
-#if (DEBUG == 1)
-	debug_print_dptr_toint("===== VISIT =====", visit_ptr, i, j);
-	 debug_print_dptr_toint("===== CONTENT =====", \
-	p_data->content_data.content_ptr, i, j);
-#endif
 	ft_dptr_free(visit_ptr, p_data->content_data.content_line);
 }
 

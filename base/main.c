@@ -6,21 +6,18 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 19:57:00 by alee              #+#    #+#             */
-/*   Updated: 2022/08/06 18:51:54 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 16:53:55 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "utils/ft_utils_01.h"
+#include "../libft/libft.h"
+#include "../utils/ft_utils_01.h"
 #include "cub3d.h"
 #include <mlx.h>
-
-//debug
-#include<stdio.h>
-#include "engine/draw_minimap.h"
-#include "engine/move_player.h"
-#include "engine/draw_screen.h"
-#include "engine/door_operator.h"
+#include "../engine/draw_minimap.h"
+#include "../engine/move_player.h"
+#include "../engine/draw_screen.h"
+#include "../engine/door_operator.h"
 
 static int	loop_main(t_cub3d *p_data)
 {

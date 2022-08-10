@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:21:24 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/06 20:01:46 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:48:48 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <mlx.h>
 # include "../mlx_utils/mlx_draw.h"
-# include "../cub3d.h"
+# include "../base/cub3d.h"
 
 # define COLOR_PLAYER	0x00FF0000
 # define COLOR_RAY		0x99FF7F7F

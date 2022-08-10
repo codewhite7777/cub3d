@@ -6,14 +6,14 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 22:49:38 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/06 20:28:56 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:49:57 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_CAST_H
 # define RAY_CAST_H
 
-# include "../cub3d.h"
+# include "../base/cub3d.h"
 # include <math.h>
 
 typedef struct s_raycast

@@ -6,13 +6,13 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:44:09 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:16:25 by alee             ###   ########.fr       */
+/*   Updated: 2022/08/10 14:48:24 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug.h"
 #include <stdio.h>
-#include "../cub3d.h"
+#include "../base/cub3d.h"
 
 void	debug_print_dptr_toint(const char *msg, char **dptr, int ylen, int xlen)
 {

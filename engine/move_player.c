@@ -6,7 +6,7 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:22:05 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/06 20:27:00 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 16:38:47 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	move_mouse(t_cub3d *p_data)
 			= radian_correction(p_data->player.radian + ONE_TO_RAD \
 			* (((double)(x - (WIN_WIDTH / 2)) *MOUSE_SPEED) / 100));
 		mlx_mouse_move(p_data->mlx.mlx_win, WIN_WIDTH / 2, 0);
-		mlx_mouse_get_pos(p_data->mlx.mlx_win, &x, &y);
 		p_data->update = 1;
 	}
 }

@@ -6,14 +6,14 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 18:45:56 by dongkim           #+#    #+#             */
-/*   Updated: 2022/08/05 00:17:51 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:50:17 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_DRAW_H
 # define MLX_DRAW_H
 
-# include "../cub3d.h"
+# include "../base/cub3d.h"
 
 typedef struct s_drawline
 {

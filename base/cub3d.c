@@ -6,20 +6,20 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:58:15 by alee              #+#    #+#             */
-/*   Updated: 2022/08/06 18:47:52 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 16:47:39 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "utils/ft_utils_01.h"
-#include "utils/ft_utils_02.h"
-#include "parse/file_loader.h"
-#include "parse/parse_data.h"
-#include "parse/content_checker.h"
-#include "mlx_utils/mlx_initializer.h"
-#include "mlx_utils/xpm_loader.h"
-#include "utils/debug.h"
-#include "engine/draw_minimap.h"
+#include "../utils/ft_utils_01.h"
+#include "../utils/ft_utils_02.h"
+#include "../parse/file_loader.h"
+#include "../parse/parse_data.h"
+#include "../parse/content_checker.h"
+#include "../mlx_utils/mlx_initializer.h"
+#include "../mlx_utils/xpm_loader.h"
+#include "../utils/debug.h"
+#include "../engine/draw_minimap.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -38,9 +38,6 @@ void	init_data(int argc, char *argv[], t_cub3d *p_data)
 		if (p_data->parse_data.asset_file[WALL_DOOR] == 0)
 			ft_exit("Error\nMemory allocation fail(WALL_DOOR)", 1);
 	}
-#if (DEBUG == 1)
-	debug_parse_data(p_data);
-#endif
 	content_checker(p_data);
 	mlx_start(p_data);
 	init_minimap(p_data);
@@ -48,7 +45,6 @@ void	init_data(int argc, char *argv[], t_cub3d *p_data)
 	p_data->frame = 0;
 	p_data->op_door.door_status = 0;
 	p_data->mlx.img_idx = 0;
-	return ;
 }
 
 void	close_data(t_cub3d *p_data)
@@ -59,5 +55,4 @@ void	close_data(t_cub3d *p_data)
 	xpm_buf_free(ASSET_MAX, p_data);
 	mlx_finish(p_data);
 	exit(0);
-	return ;
 }

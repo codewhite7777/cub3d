@@ -6,11 +6,11 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:31:18 by alee              #+#    #+#             */
-/*   Updated: 2022/08/05 17:53:20 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:47:40 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../base/cub3d.h"
 #include <mlx.h>
 #include "mlx_initializer.h"
 #include <stdlib.h>

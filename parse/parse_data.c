@@ -6,11 +6,11 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 00:07:33 by alee              #+#    #+#             */
-/*   Updated: 2022/08/04 05:34:05 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:48:13 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../base/cub3d.h"
 #include "../libft/libft.h"
 #include "../utils/ft_utils_01.h"
 #include "../utils/ft_utils_02.h"

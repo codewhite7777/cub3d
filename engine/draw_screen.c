@@ -6,11 +6,11 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 23:52:35 by alee              #+#    #+#             */
-/*   Updated: 2022/08/06 19:59:50 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:43:48 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../base/cub3d.h"
 #include "ray_cast.h"
 #include "../mlx_utils/mlx_draw.h"
 #include "draw_screen.h"

@@ -6,13 +6,14 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:51:30 by alee              #+#    #+#             */
-/*   Updated: 2022/08/06 07:38:12 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:50:07 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EVENT_HOOK_H
 # define EVENT_HOOK_H
-# include "../cub3d.h"
+
+# include "../base/cub3d.h"
 
 typedef enum e_x_event
 {

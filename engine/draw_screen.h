@@ -6,13 +6,14 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 23:52:23 by alee              #+#    #+#             */
-/*   Updated: 2022/08/06 05:48:50 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:48:59 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_SCREEN_H
 # define DRAW_SCREEN_H
-# include "../cub3d.h"
+
+# include "../base/cub3d.h"
 
 typedef struct s_radian_calc
 {

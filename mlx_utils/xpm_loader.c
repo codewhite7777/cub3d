@@ -6,11 +6,11 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:43:50 by alee              #+#    #+#             */
-/*   Updated: 2022/08/04 23:25:49 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 14:44:11 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../base/cub3d.h"
 #include <mlx.h>
 #include "xpm_loader.h"
 #include <stdlib.h>

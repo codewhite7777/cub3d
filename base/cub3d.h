@@ -6,14 +6,12 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:48:06 by alee              #+#    #+#             */
-/*   Updated: 2022/08/06 18:47:04 by dongkim          ###   ########.fr       */
+/*   Updated: 2022/08/10 16:48:10 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-
-# define DEBUG 0
 
 # define PI				3.141592
 # define ONE_TO_RAD		0.017453

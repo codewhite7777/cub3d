@@ -6,7 +6,7 @@
 #    By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 15:38:45 by alee              #+#    #+#              #
-#    Updated: 2022/08/06 18:26:36 by dongkim          ###   ########.fr        #
+#    Updated: 2022/08/10 16:56:26 by dongkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ RM = rm -f
 
 NAME = cub3D
 
-FILE = main cub3d
+BASE_FILE = main cub3d
 
 LIBFT_FILE = ft_isalnum ft_isprint ft_memcmp ft_putchar_fd ft_split \
 	ft_strlcat ft_strncmp ft_substr ft_atoi ft_isalpha \
@@ -42,6 +42,7 @@ UTILS_SRC = $(addprefix utils/,$(addsuffix .c, $(UTILS_FILE)))
 PARSE_SRC = $(addprefix parse/,$(addsuffix .c, $(PARSE_FILE)))
 MLX_SRC = $(addprefix mlx_utils/,$(addsuffix .c, $(MLX_FILE)))
 ENGINE_SRC = $(addprefix engine/,$(addsuffix .c, $(ENGINE_FILE)))
+BASE_SRC = $(addprefix base/,$(addsuffix .c, $(BASE_FILE)))
 
 LIBFT_OBJ = $(LIBFT_SRC:.c=.o)
 GNL_OBJ = $(GNL_SRC:.c=.o)
@@ -49,14 +50,16 @@ UTILS_OBJ = $(UTILS_SRC:.c=.o)
 PARSE_OBJ = $(PARSE_SRC:.c=.o)
 MLX_OBJ = $(MLX_SRC:.c=.o)
 ENGINE_OBJ = $(ENGINE_SRC:.c=.o)
+BASE_OBJ = $(BASE_SRC:.c=.o)
 
-
-SRC = $(addsuffix .c, $(FILE)) $(LIBFT_SRC) $(GNL_SRC) $(UTILS_SRC) $(PARSE_SRC) $(MLX_SRC) $(ENGINE_SRC)
-OBJ = $(addsuffix .o, $(FILE)) $(LIBFT_OBJ) $(GNL_OBJ) $(UTILS_OBJ) $(PARSE_OBJ) $(MLX_OBJ) $(ENGINE_OBJ)
+SRC = $(addsuffix .c, $(FILE)) $(LIBFT_SRC) $(GNL_SRC) $(UTILS_SRC) $(PARSE_SRC) $(MLX_SRC) $(ENGINE_SRC) $(BASE_SRC)
+OBJ = $(addsuffix .o, $(FILE)) $(LIBFT_OBJ) $(GNL_OBJ) $(UTILS_OBJ) $(PARSE_OBJ) $(MLX_OBJ) $(ENGINE_OBJ) $(BASE_OBJ)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	$(MAKE) -C ./mlx
+	cp ./mlx/libmlx.dylib .
 	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@
 
 %.o: %.c
@@ -64,16 +67,13 @@ $(NAME): $(OBJ)
 
 .PHONY: clean
 clean:
+	$(MAKE) -C ./mlx clean
 	$(RM) $(OBJ)
 
 .PHONY: fclean
 fclean: clean
+	$(RM) ./libmlx.dylib
 	$(RM) $(NAME)
-
-.PHONY: test
-test:
-	$(CC) -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx test.c -o a.out
 
 .PHONY: re
 re: fclean all
-

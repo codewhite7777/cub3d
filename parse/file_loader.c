@@ -6,14 +6,14 @@
 /*   By: alee <alee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:39:10 by alee              #+#    #+#             */
-/*   Updated: 2022/07/22 15:14:27 by alee             ###   ########.fr       */
+/*   Updated: 2022/08/10 14:47:55 by dongkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "../utils/ft_utils_01.h"
 #include "../utils/ft_utils_02.h"
-#include "../cub3d.h"
+#include "../base/cub3d.h"
 #include "../get_next_line/get_next_line.h"
 #include <stdlib.h>
 #include "../libft/libft.h"
